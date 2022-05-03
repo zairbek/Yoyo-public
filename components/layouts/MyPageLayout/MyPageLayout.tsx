@@ -44,7 +44,7 @@ const MyPageLayout: React.FC<MyPageLayoutProps> = ({
       ogUrl={ogUrl}
       className={rootClassName}
     >
-      <div className="container flex flex-row items-start mx-auto my-6">
+      <div className="lg:container min-w-[1024px] flex flex-row items-start mx-auto my-6">
         <AccountSidebar/>
 
         <main className={classNames("flex-1 bg-white shadow-md rounded-2xl", className)}>

@@ -17,10 +17,10 @@ const MobileHeader = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16"/>
               </svg>
             </label>
-            <ul tabIndex="0"
+            <ul tabIndex={0}
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
               <li><a>Item 1</a></li>
-              <li tabIndex="0">
+              <li tabIndex={0}>
                 <a className="justify-between">
                   Parent
                   <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24"

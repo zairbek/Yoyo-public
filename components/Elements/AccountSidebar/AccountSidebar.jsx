@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const AccountSidebar = () => {
   return (
-    <aside className="sticky top-20 hidden md:block md:basis-1/4 lg:basis-1/5 bg-white shadow-md mr-8 rounded-2xl overflow-hidden">
+    <aside className="sticky top-20 md:basis-1/4 lg:basis-1/5 bg-white shadow-md mr-8 rounded-2xl overflow-hidden">
 
       <div className="flex flex-col w-full p-5">
         {/* @url https://daisyui.com/components/avatar/#avatar-placeholder */}
