@@ -4,7 +4,7 @@ import MainLayout from "../components/layouts/MainLayout/MainLayout";
 const Home: NextPage = () => {
   return (
     <MainLayout title={'main'} description={'main'}>
-      <p>index</p>
+      index
     </MainLayout>
   )
 }

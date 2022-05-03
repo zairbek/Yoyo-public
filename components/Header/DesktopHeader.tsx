@@ -3,6 +3,7 @@ import React from 'react';
 import HeaderSearch from "../UI/Search/HeaderSearch/HeaderSearch";
 import BasketButtonDropdown from "../UI/Basket/BasketIcon/BasketButtonDropdown";
 import AccountButtonCircle from "../UI/Account/AccountButtonCircle/AccountButtonCircle";
+import Link from "next/link";
 
 const DesktopHeader = () => {
   return (
@@ -10,7 +11,9 @@ const DesktopHeader = () => {
       <div className="navbar justify-between bg-primary-content rounded-2xl bg-white/60 backdrop-blur-2xl shadow-xl gap-x-4">
 
         <div>
-          <a className="btn btn-ghost normal-case text-xl">eBazar</a>
+          <Link href={'/'}>
+            <a className="btn btn-ghost normal-case text-xl">eBazar</a>
+          </Link>
         </div>
 
 

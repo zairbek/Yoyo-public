@@ -3,8 +3,17 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar as solidFaStar, faStarHalfAlt} from "@fortawesome/free-solid-svg-icons";
 import {faStar as regularFaStar, } from "@fortawesome/free-regular-svg-icons";
 
+interface RatingProps {
+  rating: number;
+  maxRating?: number;
+  className?: string;
+}
 
-const Rating = ({rating = 1.1, maxRating = 5, className = ''}) => {
+const Rating: React.FC<RatingProps> = ({
+  rating = 1.1,
+  maxRating = 5,
+  className = ''
+}) => {
   let rounded = Math.round(rating);
   let isNotHalf = rating === rounded
   let listStars = [];
