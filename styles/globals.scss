@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text-muted {
+  @apply text-gray-500;
+}
+
+
+// react-datepicker
+$datepicker__selected-color: #570ef8;
+$datepicker__background-color: #ffffff !default;
+$datepicker__border-radius: 1rem !default;
+$datepicker__margin: 1rem !default;
+$datepicker__triangle-size: 0px !default;
+@import "node_modules/react-datepicker/src/stylesheets/datepicker";
+// react-datepicker
+
