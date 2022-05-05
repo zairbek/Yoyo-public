@@ -7,11 +7,11 @@ import MyPageLayout from "../../../components/layouts/MyPageLayout/MyPageLayout"
 const Settings: NextPage = () => {
   return (
     <MyPageLayout title={'setting'} description={'setting'}>
-        {/* Profile */}
-        <MainSettings/>
+      {/* Profile */}
+      <MainSettings/>
 
-        {/* Profile */}
-        <ProfileSettings/>
+      {/* Profile */}
+      <ProfileSettings/>
     </MyPageLayout>
   );
 }

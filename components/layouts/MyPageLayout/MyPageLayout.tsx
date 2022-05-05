@@ -1,22 +1,11 @@
 import React, {JSXElementConstructor, ReactElement} from 'react';
 import classNames from "classnames";
 
-import MainLayout from "../MainLayout/MainLayout";
+import MainLayout, {MainLayoutProps} from "../MainLayout/MainLayout";
 import AccountSidebar from "../../../components/Elements/AccountSidebar/AccountSidebar";
 
-interface MyPageLayoutProps {
-  title: string;
-  description: string;
-  keywords?: string;
-
-  ogTitle?: string;
-  ogDescription?: string;
-  ogImage?: string
-  ogUrl?: string,
-
-  children?: React.ReactNode,
+interface MyPageLayoutProps extends MainLayoutProps{
   rootClassName?: string,
-  className?: string,
 }
 
 const MyPageLayout: React.FC<MyPageLayoutProps> = ({
