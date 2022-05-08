@@ -10,13 +10,11 @@ class MyDocument extends Document {
   render() {
     return (
       <Html data-theme="light">
-        <Head>
-          <title>title</title>
-        </Head>
+        <Head/>
         <body className="bg-gray-100">
-        <div className="flex"/>
-        <Main/>
-        <NextScript/>
+          <div className="flex"/>
+          <Main/>
+          <NextScript/>
         </body>
       </Html>
     )
