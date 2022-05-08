@@ -13,7 +13,7 @@ class MyDocument extends Document {
         <Head>
           <title>title</title>
         </Head>
-        <body className="min-w-[1024px] bg-gray-100">
+        <body className="bg-gray-100">
         <div className="flex"/>
         <Main/>
         <NextScript/>

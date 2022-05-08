@@ -1,14 +1,22 @@
 import React from 'react';
 
-const HeaderSearch: React.FC = () => {
+interface HeaderSearchProps {
+  hideCategory?: boolean;
+}
+
+const HeaderSearch: React.FC<HeaderSearchProps> = ({
+  hideCategory = false
+}) => {
   return (
     <div className="form-control w-full">
       <div className="input-group">
-        <select className="select select-bordered w-32">
-          <option defaultValue="">Везде</option>
-          <option>Авто</option>
-          <option>Личние вещи</option>
-        </select>
+        {!hideCategory &&
+          <select className="select select-bordered w-32">
+            <option defaultValue="">Везде</option>
+            <option>Авто</option>
+            <option>Личние вещи</option>
+          </select>
+        }
 
         <input type="text" placeholder="Search" className="input w-full input-bordered"/>
         <button className="btn btn-square">

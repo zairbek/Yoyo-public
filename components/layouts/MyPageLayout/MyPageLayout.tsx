@@ -9,18 +9,18 @@ interface MyPageLayoutProps extends MainLayoutProps{
 }
 
 const MyPageLayout: React.FC<MyPageLayoutProps> = ({
-   title,
-   description,
-   keywords,
+  title,
+  description,
+  keywords,
 
-   ogTitle = title,
-   ogDescription = description,
-   ogImage,
-   ogUrl,
+  ogTitle = title,
+  ogDescription = description,
+  ogImage,
+  ogUrl,
 
-   children,
-   rootClassName,
-   className,
+  children,
+  rootClassName,
+  className,
 }) => {
   return (
     <MainLayout

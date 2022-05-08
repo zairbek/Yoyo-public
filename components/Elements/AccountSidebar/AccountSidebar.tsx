@@ -1,7 +1,11 @@
 import React from 'react';
 import Link from "next/link";
 
-const AccountSidebar = () => {
+interface AccountSidebarProps {
+}
+
+const AccountSidebar: React.FC<AccountSidebarProps> = ({
+}) => {
   return (
     <aside className="sticky top-20 md:basis-1/4 lg:basis-1/5 bg-white shadow-md mr-8 rounded-2xl overflow-hidden">
 

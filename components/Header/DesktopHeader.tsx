@@ -1,9 +1,9 @@
 import React from 'react';
+import Link from "next/link";
 
 import HeaderSearch from "../UI/Search/HeaderSearch/HeaderSearch";
 import BasketButtonDropdown from "../UI/Basket/BasketIcon/BasketButtonDropdown";
 import AccountButtonCircle from "../UI/Account/AccountButtonCircle/AccountButtonCircle";
-import Link from "next/link";
 
 const DesktopHeader = () => {
   return (
