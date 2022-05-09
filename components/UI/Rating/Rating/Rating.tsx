@@ -32,7 +32,7 @@ const Rating: React.FC<RatingProps> = ({
   return (
     <span className={"text-amber-500 flex" + className}>
       {listStars.map((item, key) =>
-        <FontAwesomeIcon className="w-5 h-5" key={key} icon={item}/>
+        <FontAwesomeIcon className="w-4 h-4" key={key} icon={item}/>
       )}
     </span>
   );
