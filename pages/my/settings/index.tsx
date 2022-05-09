@@ -7,8 +7,9 @@ import {isMobile} from "../../../libs/uaParser";
 import {NextPageProps} from "../../index";
 
 const Settings: NextPage<NextPageProps> = ({isMobile}) => {
+  const title = 'Настройки профилья';
   return (
-    <MyPageLayout title={'setting'} description={'setting'} isMobile={isMobile}>
+    <MyPageLayout title={title} description={'setting'} isMobile={isMobile}>
       {/* Profile */}
       <MainSettings/>
 

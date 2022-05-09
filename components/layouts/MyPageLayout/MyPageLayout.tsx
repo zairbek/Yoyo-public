@@ -55,7 +55,7 @@ const MyPageLayout: React.FC<MyPageLayoutProps> = ({
           </div>
         )
         : (
-          <div className="container flex flex-col items-start mx-auto mb-20">
+          <div className="container flex flex-col items-start mx-auto pb-20">
 
             {/*{!showSidebar && (*/}
               <div className="flex items-center w-full p-3 sticky top-0 z-10 bg-base-200">

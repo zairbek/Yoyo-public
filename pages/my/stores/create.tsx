@@ -5,21 +5,23 @@ import {isMobile} from "../../../libs/uaParser";
 import {NextPageProps} from "../../index";
 
 const CreateStore: NextPage<NextPageProps> = ({isMobile}) => {
+  const title = 'Создание магазина';
+
   return (
-    <MyPageLayout title={'create STore'} description={'create STore'} isMobile={isMobile}>
+    <MyPageLayout title={title} description={'create STore'} isMobile={isMobile}>
 
       {/* Создание магазина */}
       <div>
         <div className="flex justify-between">
-          <h2 className="text-xl">Создание магазина</h2>
+          <h2 className="text-xl">{title}</h2>
         </div>
 
         <div className="divider my-0"/>
 
-        <div className="w-[40rem] mx-auto">
+        <div className="w-full md:w-[40rem] mx-auto">
 
 
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row gap-x-4">
             <div className="form-control flex-auto">
               <label className="label">
                 <span className="label-text">Названия</span>
@@ -86,7 +88,7 @@ const CreateStore: NextPage<NextPageProps> = ({isMobile}) => {
             <h3 className="text-lg">Куда хотите продать?</h3>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row gap-x-4">
             <div className="form-control flex-auto">
               <label className="label">
                 <span className="label-text">Страна</span>
