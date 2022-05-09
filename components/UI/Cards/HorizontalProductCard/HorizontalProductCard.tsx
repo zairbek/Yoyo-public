@@ -51,7 +51,7 @@ const HorizontalProductCard: React.FC = ({data}) => {
       {/*info*/}
       <div className="flex-1 py-2">
         <Link href={link}>
-          <div>
+          <div className="md:hidden">
             <a className="text-sm font-bold hover:text-blue-500">
               {data.price}
             </a>
