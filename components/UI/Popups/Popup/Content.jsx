@@ -34,7 +34,7 @@ const Content = ({
             ...transitionStyles[state]
           }}
           data-modal="modal"
-          className="fixed top-0 left-0 w-full h-full bg-gray-700/50 z-50 flex justify-center items-center"
+          className="fixed top-0 left-0 bottom-0 right-0 w-full h-full bg-gray-700/50 z-[9999] flex justify-center items-center"
           onClick={(event) => {
             if (event.target.dataset?.modal === 'modal') {
               togglePopup(false)

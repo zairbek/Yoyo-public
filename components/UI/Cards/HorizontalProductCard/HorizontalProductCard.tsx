@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from "next/link";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {Pagination, Mousewheel} from 'swiper'
 
@@ -7,7 +8,6 @@ import Rating from "../../Rating/Rating/Rating";
 
 import 'swiper/css';
 import "swiper/css/pagination";
-import Link from "next/link";
 
 const HorizontalProductCard: React.FC = ({data}) => {
   let link = '/';
@@ -67,8 +67,8 @@ const HorizontalProductCard: React.FC = ({data}) => {
         </Link>
 
         <div>
-          {data.properties.map(property => (
-            <p className="text-xs"><span className="text-gray-500">{property.name}:</span> {property.value}</p>
+          {data.properties.map((property, key) => (
+            <p key={key} className="text-xs"><span className="text-gray-500">{property.name}:</span> {property.value}</p>
           ))}
         </div>
 

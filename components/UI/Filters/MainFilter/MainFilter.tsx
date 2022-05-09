@@ -4,11 +4,6 @@ import RadioButton from "../../Forms/RadioButton/RadioButton";
 
 const MainFilter = () => {
   return (
-
-    <div
-      className="overflow-hidden border border-gray-200 rounded"
-    >
-
       <form
         action=""
         className="pt-4"
@@ -136,7 +131,6 @@ const MainFilter = () => {
           </button>
         </div>
       </form>
-    </div>
   );
 };
 

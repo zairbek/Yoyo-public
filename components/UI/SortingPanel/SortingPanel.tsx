@@ -1,6 +1,6 @@
 import React from 'react';
 
-const options = [
+export const options = [
   {
     id: 1,
     name: 'По умолчанию',
