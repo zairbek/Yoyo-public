@@ -1,13 +1,12 @@
 import React from 'react';
 
-import {Device} from "../../Device";
 import MobileNavigation from '../../MobileNavigation/MobileNavigation';
 import DesktopHeader from "../../Header/DesktopHeader";
 import MobileHeader from "../../Header/MobileHeader";
 import AppLayout, {AppLayoutProps} from "../AppLayout/AppLayout";
 
 export interface MainLayoutProps extends AppLayoutProps{
-
+  hideHeader?: boolean
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({
@@ -22,6 +21,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 
   children,
   className,
+  isMobile,
+  hideHeader = false
 }) => {
   return (
     <AppLayout
@@ -33,19 +34,17 @@ const MainLayout: React.FC<MainLayoutProps> = ({
       ogImage={ogImage}
       ogUrl={ogUrl}
       className={className}
+      isMobile={isMobile}
     >
-      <Device desktop>
-        <DesktopHeader/>
-      </Device>
-      <Device mobile>
-        <MobileHeader/>
-      </Device>
+
+      {isMobile
+        ? !hideHeader && <MobileHeader/>
+        : <DesktopHeader/>
+      }
 
       {children}
 
-      <Device mobile>
-        <MobileNavigation/>
-      </Device>
+      {isMobile && <MobileNavigation/>}
     </AppLayout>
   );
 };

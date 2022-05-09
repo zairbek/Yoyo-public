@@ -1,12 +1,14 @@
-import {NextPage} from "next";
+import {GetServerSidePropsContext, NextPage} from "next";
 import React from "react";
 import Link from "next/link";
 
 import MyPageLayout from "../../../components/layouts/MyPageLayout/MyPageLayout";
+import {isMobile} from "../../../libs/uaParser";
+import {NextPageProps} from "../../index";
 
-const Stores: NextPage = () => {
+const Stores: NextPage<NextPageProps> = ({isMobile}) => {
   return (
-    <MyPageLayout title={'store'} description={'store'}>
+    <MyPageLayout title={'store'} description={'store'} isMobile={isMobile}>
 
       {/* Магазины */}
       <div>
@@ -56,6 +58,12 @@ const Stores: NextPage = () => {
 
     </MyPageLayout>
   )
+}
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  return {
+    props: {isMobile: isMobile(ctx.req)}
+  }
 }
 
 export default Stores;

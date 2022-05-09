@@ -1,12 +1,14 @@
-import {NextPage} from "next";
+import {GetServerSidePropsContext, NextPage} from "next";
 
 import MainSettings from "../../../components/blocks/My/Settings/MainSettings";
 import ProfileSettings from "../../../components/blocks/My/Settings/ProfileSettings";
 import MyPageLayout from "../../../components/layouts/MyPageLayout/MyPageLayout";
+import {isMobile} from "../../../libs/uaParser";
+import {NextPageProps} from "../../index";
 
-const Settings: NextPage = () => {
+const Settings: NextPage<NextPageProps> = ({isMobile}) => {
   return (
-    <MyPageLayout title={'setting'} description={'setting'}>
+    <MyPageLayout title={'setting'} description={'setting'} isMobile={isMobile}>
       {/* Profile */}
       <MainSettings/>
 
@@ -14,6 +16,12 @@ const Settings: NextPage = () => {
       <ProfileSettings/>
     </MyPageLayout>
   );
+}
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  return {
+    props: {isMobile: isMobile(ctx.req)}
+  }
 }
 
 export default Settings

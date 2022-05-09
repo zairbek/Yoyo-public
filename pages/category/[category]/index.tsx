@@ -8,10 +8,13 @@ import MainFilter from "../../../components/UI/Filters/MainFilter/MainFilter";
 
 import offersData from "../../../mocks/HorizontalCardData.json";
 import SortingPanel from "../../../components/UI/SortingPanel/SortingPanel";
+import {GetServerSidePropsContext, NextPage} from "next";
+import {isMobile} from "../../../libs/uaParser";
+import {NextPageProps} from "../../index";
 
-const CategoryElements = () => {
+const CategoryElements: NextPage<NextPageProps> = ({isMobile}) => {
   return (
-    <MainLayout title={'main'} description={'main'}>
+    <MainLayout title={'main'} description={'main'} isMobile={isMobile}>
 
 
       <div className="lg:container min-w-[1024px] flex flex-col mx-auto my-5 px-2">
@@ -50,5 +53,11 @@ const CategoryElements = () => {
     </MainLayout>
   );
 };
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  return {
+    props: {isMobile: isMobile(ctx.req)}
+  }
+}
 
 export default CategoryElements;

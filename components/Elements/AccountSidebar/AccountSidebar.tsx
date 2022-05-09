@@ -1,27 +1,32 @@
 import React from 'react';
 import Link from "next/link";
+import classNames from "classnames";
 
 interface AccountSidebarProps {
+  className?: string
 }
 
 const AccountSidebar: React.FC<AccountSidebarProps> = ({
+  className
 }) => {
   return (
-    <aside className="sticky top-20 md:basis-1/4 lg:basis-1/5 bg-white shadow-md mr-8 rounded-2xl overflow-hidden">
+    <aside className={classNames("top-20 w-full lg:basis-1/5 bg-white shadow-md mr-8 rounded-2xl overflow-hidden", className)}>
 
-      <div className="flex flex-col w-full p-5">
+      <div className="flex flex-row items-center gap-x-4 lg:flex-col lg:p-5">
         {/* @url https://daisyui.com/components/avatar/#avatar-placeholder */}
-        <div className="avatar w-3/4 mx-auto my-2">
-          <div className="rounded-full">
+        <div className="avatar lg:mx-auto m-4">
+          <div className="w-24 lg:w-32 rounded-full">
             <img src="https://api.lorem.space/image/face?hash=92310"/>
           </div>
         </div>
 
-        <span className="font-bold text-xl">Заир</span>
-        <span className="font-bold text-xl">Нурмухамадов</span>
-        <Link href="/my/settings/">
-          <a className="link link-secondary text-sm">Изменить профиль</a>
-        </Link>
+        <div className="flex flex-col">
+          <span className="font-bold text-xl">Заир</span>
+          <span className="font-bold text-xl">Нурмухамадов</span>
+          <Link href="/my/settings/">
+            <a className="link link-secondary text-sm">Изменить профиль</a>
+          </Link>
+        </div>
       </div>
 
       <div className="divider my-0"/>

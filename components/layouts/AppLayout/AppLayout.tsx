@@ -14,6 +14,7 @@ export interface AppLayoutProps {
 
   children?: React.ReactNode,
   className?: string,
+  isMobile: boolean;
 }
 
 const AppLayout: React.FC<AppLayoutProps> = ({

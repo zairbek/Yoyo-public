@@ -1,13 +1,16 @@
+import {GetServerSidePropsContext, NextPage} from "next";
 import React, {useState} from 'react';
 
 import MyPageLayout from "../../../../../components/layouts/MyPageLayout/MyPageLayout";
 import ChangePasswordPopup from "../../../../../components/Elements/Popups/ChangePasswordPopup/ChangePasswordPopup";
+import {NextPageProps} from "../../../../index";
+import {isMobile} from "../../../../../libs/uaParser";
 
-const Store = () => {
+const Store: NextPage<NextPageProps> = ({isMobile}) => {
   const [isEditable, setEditable] = useState(false);
 
   return (
-    <MyPageLayout title={'edit store'} description={'edit store'}>
+    <MyPageLayout title={'edit store'} description={'edit store'} isMobile={isMobile}>
 
       <div className="mb-5">
         <div className="flex justify-between">
@@ -59,5 +62,11 @@ const Store = () => {
     </MyPageLayout>
   );
 };
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  return {
+    props: {isMobile: isMobile(ctx.req)}
+  }
+}
 
 export default Store;

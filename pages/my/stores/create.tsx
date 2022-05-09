@@ -1,11 +1,12 @@
+import {GetServerSidePropsContext, NextPage} from "next";
 
 import MyPageLayout from "../../../components/layouts/MyPageLayout/MyPageLayout";
-import {NextPage} from "next";
+import {isMobile} from "../../../libs/uaParser";
+import {NextPageProps} from "../../index";
 
-const CreateStore: NextPage = () => {
+const CreateStore: NextPage<NextPageProps> = ({isMobile}) => {
   return (
-
-    <MyPageLayout title={'create STore'} description={'create STore'}>
+    <MyPageLayout title={'create STore'} description={'create STore'} isMobile={isMobile}>
 
       {/* Создание магазина */}
       <div>
@@ -111,6 +112,12 @@ const CreateStore: NextPage = () => {
       </div>
     </MyPageLayout>
   )
+}
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  return {
+    props: {isMobile: isMobile(ctx.req)}
+  }
 }
 
 export default CreateStore;
