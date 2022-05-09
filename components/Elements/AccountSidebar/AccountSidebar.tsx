@@ -3,16 +3,25 @@ import Link from "next/link";
 import classNames from "classnames";
 
 interface AccountSidebarProps {
-  className?: string
+  className?: string;
+  isMobile?: boolean;
 }
 
 const AccountSidebar: React.FC<AccountSidebarProps> = ({
-  className
+  className,
+  isMobile = false
 }) => {
   return (
-    <aside className={classNames("top-20 w-full lg:basis-1/5 bg-white shadow-md mr-8 rounded-2xl overflow-hidden", className)}>
+    <aside className={classNames(
+      "top-20 lg:basis-1/5 bg-white shadow-md mr-8 rounded-2xl overflow-hidden",
+      className,
+      isMobile && 'w-full'
+    )}>
 
-      <div className="flex flex-row items-center gap-x-4 lg:flex-col lg:p-5">
+      <div className={classNames(
+        "flex items-center gap-x-4",
+        !isMobile ? 'flex-col p-5' : 'flex-row'
+      )}>
         {/* @url https://daisyui.com/components/avatar/#avatar-placeholder */}
         <div className="avatar lg:mx-auto m-4">
           <div className="w-24 lg:w-32 rounded-full">

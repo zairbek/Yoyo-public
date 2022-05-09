@@ -56,7 +56,7 @@ const MyPageLayout: React.FC<MyPageLayoutProps> = ({
         : (
           <div className="container flex flex-col items-start mx-auto mb-20">
 
-            {showSidebar && <AccountSidebar/>}
+            {showSidebar && <AccountSidebar isMobile />}
 
             <main className={classNames("flex-1 w-full bg-white shadow-md rounded-2xl", className)}>
               <div className="p-3">
