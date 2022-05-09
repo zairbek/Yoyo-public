@@ -1,3 +1,4 @@
+import Router from 'next/router'
 import React from 'react';
 import classNames from "classnames";
 
@@ -55,6 +56,17 @@ const MyPageLayout: React.FC<MyPageLayoutProps> = ({
         )
         : (
           <div className="container flex flex-col items-start mx-auto mb-20">
+
+            {/*{!showSidebar && (*/}
+              <div className="flex items-center w-full p-3 sticky top-0 z-10 bg-base-200">
+                <button className="btn btn-xs btn-ghost" onClick={() => Router.back()}>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                </button>
+                <h2 className="text-sm">
+                  {title}
+                </h2>
+              </div>
+            {/*)}*/}
 
             {showSidebar && <AccountSidebar isMobile />}
 
