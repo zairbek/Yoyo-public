@@ -1,12 +1,24 @@
 import React from 'react';
+import classNames from "classnames";
+
 import Checkbox from "../../Forms/Checkbox/Checkbox";
 import RadioButton from "../../Forms/RadioButton/RadioButton";
 
-const MainFilter = () => {
+interface MainFilterProps {
+  isMobile?: boolean;
+}
+
+const MainFilter: React.FC<MainFilterProps> = ({
+  isMobile = false
+}) => {
   return (
+    <>
       <form
         action=""
-        className="pt-4"
+        className={classNames(
+           "pt-4",
+            isMobile && 'mb-16'
+          )}
       >
         <fieldset>
           <legend className="block w-full px-5 py-3 text-xs font-medium bg-gray-100">
@@ -109,28 +121,30 @@ const MainFilter = () => {
             </div>
           </div>
         </fieldset>
-
-
-
-
-        <div className="flex justify-between px-4 py-3 border-t border-gray-200">
-          <button
-            name="reset"
-            type="button"
-            className="btn btn-secondary btn-outline btn-sm  font-medium normal-case"
-          >
-            Reset All
-          </button>
-
-          <button
-            name="commit"
-            type="button"
-            className="btn btn-primary btn-sm font-medium normal-case"
-          >
-            Apply Filters
-          </button>
-        </div>
       </form>
+
+
+      <div className={classNames(
+        "flex justify-between px-4 py-3 border-t border-gray-200",
+        isMobile && 'fixed bottom-0 right-0 left-0 bg-base-100'
+      )}>
+        <button
+          name="reset"
+          type="button"
+          className="btn btn-secondary btn-outline btn-sm  font-medium normal-case"
+        >
+          Reset All
+        </button>
+
+        <button
+          name="commit"
+          type="button"
+          className="btn btn-primary btn-sm font-medium normal-case"
+        >
+          Apply Filters
+        </button>
+      </div>
+    </>
   );
 };
 

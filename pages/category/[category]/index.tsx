@@ -62,7 +62,7 @@ const CategoryElements: NextPage<NextPageProps> = ({
                 <button className="btn btn-sm btn-link btn-ghost normal-case" onClick={() => togglePopup(false)}>Отменить</button>
               </div>
 
-              <MainFilter/>
+              <MainFilter isMobile/>
 
             </div>
           </Popup.Content>
