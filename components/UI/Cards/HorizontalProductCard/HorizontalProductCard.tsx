@@ -10,7 +10,7 @@ import 'swiper/css';
 import "swiper/css/pagination";
 
 const HorizontalProductCard: React.FC = ({data}) => {
-  let link = '/';
+  let link = '/product/test';
 
   return (
     <div className="flex gap-x-4 bg-white shadow-md rounded-2xl p-2 mb-2 hover:shadow hover:bg-white/60 hover:backdrop-blur-2xl">
@@ -18,22 +18,20 @@ const HorizontalProductCard: React.FC = ({data}) => {
       {/*image*/}
       <div className="w-32 md:w-56">
         <div className="flex items-center h-52 relative rounded-2xl bg-gray-100">
-          <Link href={link}>
-            <Swiper
-              className="w-full h-full"
-              pagination={true}
-              mousewheel={true}
-              modules={[Pagination, Mousewheel]}
-              // onSlideChange={() => console.log('slide change')}
-              // onSwiper={(swiper) => console.log(swiper)}
-            >
-              {data.images.map((item, key) =>
-                <SwiperSlide className="flex justify-center" key={key}>
-                  <img className="w-[100%] h-[100%] object-contain" src={item.src} alt=""/>
-                </SwiperSlide>
-              )}
-            </Swiper>
-          </Link>
+          <Swiper
+            className="w-full h-full"
+            pagination={true}
+            mousewheel={true}
+            modules={[Pagination, Mousewheel]}
+            // onSlideChange={() => console.log('slide change')}
+            // onSwiper={(swiper) => console.log(swiper)}
+          >
+            {data.images.map((item, key) =>
+              <SwiperSlide className="flex justify-center" key={key}>
+                <img className="w-[100%] h-[100%] object-contain" src={item.src} alt=""/>
+              </SwiperSlide>
+            )}
+          </Swiper>
 
           <div className="absolute -top-0 -left-0 z-10">
             <FavoriteButton active={false}/>
@@ -66,11 +64,13 @@ const HorizontalProductCard: React.FC = ({data}) => {
           </div>
         </Link>
 
-        <div>
-          {data.properties.map((property, key) => (
-            <p key={key} className="text-xs"><span className="text-gray-500">{property.name}:</span> {property.value}</p>
-          ))}
-        </div>
+        <Link href={link}>
+          <div>
+            {data.properties.map((property, key) => (
+              <p key={key} className="text-xs"><span className="text-gray-500">{property.name}:</span> {property.value}</p>
+            ))}
+          </div>
+        </Link>
 
         <div className="hidden md:block">
           <p className="flex items-center text-sm">

@@ -6,7 +6,8 @@ import MobileHeader from "../../Header/MobileHeader";
 import AppLayout, {AppLayoutProps} from "../AppLayout/AppLayout";
 
 export interface MainLayoutProps extends AppLayoutProps{
-  hideHeader?: boolean
+  hideHeader?: boolean;
+  showBackButton?: boolean;
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({
@@ -22,7 +23,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   children,
   className,
   isMobile,
-  hideHeader = false
+  hideHeader = false,
+  showBackButton = false
 }) => {
   return (
     <AppLayout
@@ -38,7 +40,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
     >
 
       {isMobile
-        ? !hideHeader && <MobileHeader/>
+        ? !hideHeader && <MobileHeader showBackButton={showBackButton}/>
         : <DesktopHeader/>
       }
 

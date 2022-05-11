@@ -19,7 +19,7 @@ const CategoryElements: NextPage<NextPageProps> = ({
 }) => {
 
   return (
-    <MainLayout title={'main'} description={'main'} isMobile={isMobile}>
+    <MainLayout title={'main'} description={'main'} isMobile={isMobile} showBackButton>
 
 
       <div className={classNames(
