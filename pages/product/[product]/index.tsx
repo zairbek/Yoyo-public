@@ -14,6 +14,7 @@ import datas from '../../../mocks/HorizontalCardData.json';
 import 'swiper/css';
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import ProductProperty from "../../../components/UI/Product/ProductProperty/ProductProperty";
 
 const ProductIndex: NextPage<NextPageProps> = ({
   isMobile
@@ -72,20 +73,7 @@ const ProductIndex: NextPage<NextPageProps> = ({
             isMobile && 'order-last'
           )}>
             <div className="py-4 text-sm">
-              {data.properties.map((property, key) => (
-                <dl key={key} className="flex items-end gap-x-2 w-full mb-2">
-                  <dt
-                    className={classNames(
-                    "basis-1/2 text-gray-500 relative",
-                      "before:border-b-[1px] before:border-dotted before:w-full before:block before:absolute before:bottom-[.2rem] before:left-0 before:content-[''] before:border-gray-300"
-                    )}
-                  >
-                    <span className="bg-white relative">{property.name}</span>
-                  </dt>
-                  <dd className="basis-1/2">{property.value}</dd>
-                </dl>
-              ))}
-
+              {data.properties.map((property, key) => <ProductProperty key={key} name={property.name} value={property.value}/>)}
               <a href="" className="link link-hover link-primary">Перейти к описанию</a>
             </div>
           </div>
@@ -113,34 +101,64 @@ const ProductIndex: NextPage<NextPageProps> = ({
 
         {/* Характеристики */}
         <section className={classNames(
-          "bg-white shadow-md rounded-2xl p-4",
+          "bg-white shadow-md rounded-2xl p-4 mb-4",
           'flex gap-4',
-          // isMobile && 'flex-col'
         )}>
 
           <div className={classNames(
             !isMobile && "basis-9/12"
           )}>
 
-            <div className="mb-8">
-              <h2 className="text-xl font-bold pb-2">Описание</h2>
+            <div className="mb-10">
+              <h2 className="text-xl font-bold pb-6">Описание</h2>
               <p className="text-sm">{data.description}</p>
             </div>
 
-            <div className="mb-8">
-              <h4 className="font-bold pb-2">Комплектация</h4>
+            <div className="mb-10">
+              <h4 className="font-bold pb-6">Комплектация</h4>
               <p className="text-sm">{data.description}</p>
             </div>
 
+            <div className="mb-10">
+              <h2 className="text-xl font-bold pb-6">Характеристика</h2>
 
-            <div className="mb-8">
-              <h2 className="text-xl font-bold pb-2">Характеристика</h2>
-              <p className="text-sm">{data.description}</p>
+
+              <div className={classNames(
+                "mb-8 flex ",
+                !isMobile ? 'gap-y-8 flex-wrap' : 'flex-col'
+              )}>
+
+                {[1,2,3,4,5].map(item => (
+                  <div key={item} className={classNames(!isMobile && "basis-1/2")}>
+                    <h4 className="font-bold pb-2">Комплектация</h4>
+                    {data.properties.map((property, key) => <ProductProperty key={key} name={property.name} value={property.value}/>)}
+                  </div>
+                ))}
+              </div>
+
             </div>
 
           </div>
         </section>
 
+
+        {/* Отзывы */}
+        <section className={classNames(
+          "bg-white shadow-md rounded-2xl p-4 mb-4",
+          'flex gap-4',
+        )}>
+
+          <div className={classNames(
+            !isMobile && "basis-9/12"
+          )}>
+
+            <div className="mb-10">
+              <h2 className="text-xl font-bold pb-6">Отзывы о товаре</h2>
+              <p className="text-sm">{data.description}</p>
+            </div>
+
+          </div>
+        </section>
 
       </div>
     </MainLayout>
