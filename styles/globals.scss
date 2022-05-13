@@ -16,3 +16,13 @@ $datepicker__triangle-size: 0px !default;
 @import "node_modules/react-datepicker/src/stylesheets/datepicker";
 // react-datepicker
 
+
+// popup
+@import 'reactjs-popup/dist/index.css';
+.popup-content {
+  width: min-content !important;
+  background: rgba(0,0,0,0);
+  border: 0;
+  padding: 0;
+}
+// popup

@@ -1,7 +1,17 @@
 import React from 'react';
 import Link from 'next/link'
+import SignInPopup from "../../../Elements/Popups/SignInPopup/SignInPopup";
 
 const AccountButtonCircle = () => {
+  const state = true;
+
+
+  if (state) {
+    return (
+      <SignInPopup/>
+    );
+  }
+
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
