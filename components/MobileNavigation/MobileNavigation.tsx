@@ -15,8 +15,8 @@ const MobileNavigation: React.FC = () => {
   const router = useRouter()
 
   return (
-    <section id="bottom-navigation" className="block fixed inset-x-0 bottom-0 z-10 bg-white shadow pb-1">
-      <div id="tabs" className="flex justify-between">
+    <section className="block fixed inset-x-0 bottom-0 z-10 bg-white shadow pb-1">
+      <div className="flex justify-between">
         {menu.map((item, key) => (
           <Link href={item.link} key={key}>
             <a className={classNames(
