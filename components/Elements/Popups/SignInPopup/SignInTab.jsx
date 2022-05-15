@@ -27,6 +27,7 @@ const SignInTab = ({emailLogin}) => {
 
               <TextField
                label="Телефон"
+               type="tel"
                name="phone"
                mask="+\9\96 (999) 99-99-99"
                placeholder="+996 (___) __-__-__"

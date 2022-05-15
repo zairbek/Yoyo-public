@@ -6,7 +6,7 @@ import MyPageLayout from "../../../components/layouts/MyPageLayout/MyPageLayout"
 import {isMobile} from "../../../libs/uaParser";
 import MainLayout from "../../../components/layouts/MainLayout/MainLayout";
 import Link from "next/link";
-import MobileIndex from "../../../components/Elements/Popups/SignInPopup/MobileIndex";
+import MobileSignInIndex from "../../../components/Elements/Popups/SignInPopup/MobileIndex";
 
 const Dashboard: NextPage<NextPageProps> = ({isMobile}) => {
   const state = true;
@@ -27,7 +27,7 @@ const Dashboard: NextPage<NextPageProps> = ({isMobile}) => {
                 <p className="text-sm mb-2">Чтобы делать покупки, отслеживать заказы и пользоваться персональными скидками и баллами.</p>
 
                 <div>
-                  <MobileIndex/>
+                  <MobileSignInIndex/>
                 </div>
               </div>
 

@@ -13,6 +13,7 @@ type SizeStrings = keyof typeof Size;
 
 interface TextFieldProps {
   name: string;
+  type?: string;
   label?: string;
   placeholder?: string;
   size?: SizeStrings;
@@ -26,6 +27,7 @@ interface TextFieldProps {
 
 const TextField: React.FC<TextFieldProps> = ({
   name,
+  type,
   label,
   placeholder,
   size= 'md',
@@ -59,6 +61,7 @@ const TextField: React.FC<TextFieldProps> = ({
               border && 'input-bordered',
               ghost && 'input-ghost',
             )}
+            type={type}
             {...form}
           />
         :
@@ -72,6 +75,7 @@ const TextField: React.FC<TextFieldProps> = ({
               border && 'input-bordered',
               ghost && 'input-ghost',
             )}
+            type={type}
             {...form}
             mask={mask}
           />
