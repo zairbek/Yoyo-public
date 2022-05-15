@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link'
-import SignInPopup from "../../../Elements/Popups/SignInPopup/SignInPopup";
+import SignInPopup from "../../../Elements/Popups/SignInPopup";
 
 const AccountButtonCircle = () => {
   const state = true;
