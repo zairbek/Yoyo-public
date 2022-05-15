@@ -20,7 +20,7 @@ $datepicker__triangle-size: 0px !default;
 // popup
 @import 'reactjs-popup/dist/index.css';
 .popup-content {
-  width: min-content !important;
+  width: min-content;
   background: rgba(0,0,0,0);
   border: 0;
   padding: 0;
