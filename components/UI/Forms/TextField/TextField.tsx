@@ -40,7 +40,7 @@ const TextField: React.FC<TextFieldProps> = ({
 }) => {
 
   return (
-    <div className="form-control w-full max-w-xs">
+    <div className="form-control w-full">
 
       {label &&
         <label className="label">
@@ -55,7 +55,7 @@ const TextField: React.FC<TextFieldProps> = ({
             name={name}
             placeholder={placeholder}
             className={classNames(
-              "input w-full max-w-xs",
+              "input w-full",
               Size[size],
               error && 'input-error',
               border && 'input-bordered',
@@ -69,7 +69,7 @@ const TextField: React.FC<TextFieldProps> = ({
             name={name}
             placeholder={placeholder}
             className={classNames(
-              "input w-full max-w-xs",
+              "input w-full",
               Size[size],
               error && 'input-error',
               border && 'input-bordered',
