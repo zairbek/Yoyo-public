@@ -23,6 +23,7 @@ interface TextFieldProps {
   ghost?: boolean;
   form?: any;
   mask?: string;
+  defaultValue?: string;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -37,6 +38,7 @@ const TextField: React.FC<TextFieldProps> = ({
   ghost,
   form,
   mask,
+  defaultValue,
 }) => {
 
   return (
@@ -62,6 +64,7 @@ const TextField: React.FC<TextFieldProps> = ({
               ghost && 'input-ghost',
             )}
             type={type}
+            defaultValue={defaultValue}
             {...form}
           />
         :
@@ -76,6 +79,7 @@ const TextField: React.FC<TextFieldProps> = ({
               ghost && 'input-ghost',
             )}
             type={type}
+            defaultValue={defaultValue}
             {...form}
             mask={mask}
           />

@@ -32,7 +32,7 @@ type ShapeStrings = keyof typeof Shape;
 
 interface ButtonProp {
   className?: string;
-  children: React.ReactElement;
+  children: React.ReactElement|string;
   size?: SizeStrings;
   variant?: VariantStrings;
   active?: boolean;
