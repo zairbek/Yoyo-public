@@ -15,12 +15,13 @@ const authInstance = axios.create({
 
 export const AuthApi = {
   async phone(dto: AuthWithPhoneDto) {
-    const { data } = await authInstance.post('/api/v1/auth/send', dto)
+    const { data } = await authInstance.post('/api/v1/auth/send', dto, {withCredentials: true})
     return data;
   },
 
   async phoneConfirm(dto: AuthWithPhoneConfirmDto) {
-    const { data } = await authInstance.post('/api/v1/auth/sign-in', dto)
+    const { data } = await authInstance.post('/api/v1/auth/sign-in', dto, {withCredentials: true})
+    // const { data } = await authInstance.post('/api/v1/auth/sign-in', dto)
     return data;
   }
 }

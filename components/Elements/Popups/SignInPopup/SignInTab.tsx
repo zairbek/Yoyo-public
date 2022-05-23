@@ -59,7 +59,7 @@ const SignInTab = ({emailLogin}) => {
       <div className="flex flex-col w-full border-opacity-50">
         {! confirmMode
           ?
-            <form noValidate="" action="" onSubmit={sendForm.handleSubmit(onSubmit)}>
+            <form action="" onSubmit={sendForm.handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-y-6">
                 <div>
                   <TextField
