@@ -2,14 +2,14 @@ import axios from "axios";
 import {AuthWithPhoneConfirmDto, AuthWithPhoneDto} from "./types";
 
 const instance = axios.create({
-  baseURL: 'http://ebazar.loc'
+  baseURL: process.env.NEXT_PUBLIC_API_URL
 })
 
 const authInstance = axios.create({
-  baseURL: 'http://ebazar.loc',
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
-    'client-id': 4,
-    'client-secret': 'h3YTAKTNgEE5yOofhout79Gnx7h6aVvgIFlHKHka'
+    'client-id': String(process.env.NEXT_PUBLIC_CLIENT_ID),
+    'client-secret': String(process.env.NEXT_PUBLIC_CLIENT_SECRE)
   }
 })
 
