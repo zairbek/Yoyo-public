@@ -22,7 +22,7 @@ const MobileNavigation: React.FC = () => {
             <a className={classNames(
               "flex flex-col items-center w-full justify-center inline-block text-center pt-2 pb-1",
               "focus:text-primary hover:text-primary",
-              router.asPath === item.link && 'text-primary'
+              router.asPath === item.link && 'text-primary fill-primary'
             )}>
               {item.icon}
               <span className="text-xs">{item.name}</span>
