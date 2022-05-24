@@ -24,6 +24,7 @@ interface TextFieldProps {
   form?: any;
   mask?: string;
   defaultValue?: string;
+  disabled?: boolean;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -39,6 +40,7 @@ const TextField: React.FC<TextFieldProps> = ({
   form,
   mask,
   defaultValue,
+  disabled,
 }) => {
 
   return (
@@ -65,6 +67,7 @@ const TextField: React.FC<TextFieldProps> = ({
             )}
             type={type}
             defaultValue={defaultValue}
+            disabled={disabled}
             {...form}
           />
         :
@@ -80,6 +83,7 @@ const TextField: React.FC<TextFieldProps> = ({
             )}
             type={type}
             defaultValue={defaultValue}
+            disabled={disabled}
             {...form}
             mask={mask}
           />

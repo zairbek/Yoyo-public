@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
 import dynamic from "next/dynamic";
-import SignInTab from "./SignInTab";
-import RegisterTab from "./RegisterTab";
+import PhoneSignInTab from "./PhoneSignInTab";
+import ConfirmPhoneSignInTab from "./ConfirmPhoneSignInTab";
+import EmailSignInTab from "./EmailSignInTab";
+import ConfirmEmailSignInTab from "./ConfirmEmailSignInTab";
 
 const Popup = dynamic(() => import('reactjs-popup'), { ssr: false });
 
 const MobileIndex: React.FC = () => {
   const [isOpen, togglePopup] = useState(false);
-  const [currentTab, setCurrentTab] = useState<"phoneLogin" | "emailLogin">('phoneLogin');
+  const [currentTab, setCurrentTab] = useState<"phoneLogin" | "emailLogin" | "confirmPhoneLogin" | "confirmEmailLogin">('phoneLogin');
+  const [data, setData] = useState({phone: '', email: ''});
 
   return (
     <>
@@ -29,8 +32,38 @@ const MobileIndex: React.FC = () => {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
 
-          {currentTab === 'phoneLogin' && <SignInTab emailLogin={() => setCurrentTab('emailLogin')}/>}
-          {currentTab === 'emailLogin' && <RegisterTab onBack={() => setCurrentTab('phoneLogin')}/>}
+
+          {currentTab === 'phoneLogin' &&
+            <PhoneSignInTab
+              toEmailTab={() => setCurrentTab('emailLogin')}
+              toConfirmCodeTab={(phone) => {
+                setData({phone: phone})
+                setCurrentTab('confirmPhoneLogin')
+              }}
+            />
+          }
+          {currentTab === 'confirmPhoneLogin' &&
+            <ConfirmPhoneSignInTab
+              phone={data.phone}
+              onBack={() => setCurrentTab('phoneLogin')}
+            />
+          }
+
+          {currentTab === 'emailLogin' &&
+            <EmailSignInTab
+              onBack={() => setCurrentTab('phoneLogin')}
+              toConfirmCodeTab={(email) => {
+                setData({email: email})
+                setCurrentTab('confirmEmailLogin')
+              }}
+            />
+          }
+          {currentTab === 'confirmEmailLogin' &&
+            <ConfirmEmailSignInTab
+              email={data.email}
+              onBack={() => setCurrentTab('emailLogin')}
+            />
+          }
 
         </div>
       </Popup>

@@ -45,7 +45,7 @@ interface ButtonProp {
   startIcon?: React.ReactElement;
   endIcon?: React.ReactElement;
   link?: boolean;
-  onClick?: void;
+  onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProp> = ({

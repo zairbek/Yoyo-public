@@ -4,13 +4,24 @@ import {yupResolver} from "@hookform/resolvers/yup";
 
 import {loginViaEmailFormSchema} from "../../../../utils/validations/login";
 import TextField from "../../../UI/Forms/TextField/TextField";
+import {AuthWithEmailDto} from "../../../../utils/api/types";
 
-const RegisterTab = ({onBack}) => {
+interface EmailSignInTab {
+  onBack: () => void;
+  toConfirmCodeTab: (email: string) => void;
+}
+
+const EmailSignInTab: React.FC<EmailSignInTab> = ({
+  onBack,
+  toConfirmCodeTab
+}) => {
   const form = useForm({
     resolver: yupResolver(loginViaEmailFormSchema)
   })
 
-  const onSubmit = data => console.log(data)
+  const onSubmit = (dto: AuthWithEmailDto) => {
+    toConfirmCodeTab(dto.email)
+  }
 
   console.log(form.formState.errors)
 
@@ -24,7 +35,7 @@ const RegisterTab = ({onBack}) => {
         <h1 className="my-3 text-4xl font-bold">Войти</h1>
         <p className="text-sm text-coolGray-400">Войдите в систему для доступа к своему аккаунту</p>
       </div>
-      <form noValidate="" action="" onSubmit={form.handleSubmit(onSubmit)}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex flex-col w-full border-opacity-50">
           <div className="flex flex-col gap-y-6">
 
@@ -47,4 +58,4 @@ const RegisterTab = ({onBack}) => {
   );
 };
 
-export default RegisterTab;
+export default EmailSignInTab;

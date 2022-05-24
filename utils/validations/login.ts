@@ -12,3 +12,8 @@ export const loginViaPhoneConfirmFormSchema = yup.object().shape({
 export const loginViaEmailFormSchema = yup.object().shape({
   email: yup.string().email('Некоректный email').required('Поля обязательно')
 });
+
+export const loginViaEmailConfirmFormSchema = yup.object().shape({
+  email: yup.string().email().required('Поля обязательно'),
+  code: yup.string().required('Поля обязательно')
+});
