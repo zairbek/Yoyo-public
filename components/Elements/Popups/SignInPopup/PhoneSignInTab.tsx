@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useForm} from "react-hook-form";
+import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 
 import {loginViaPhoneFormSchema} from "../../../../utils/validations/login";
@@ -7,6 +7,8 @@ import TextField from "../../../UI/Forms/TextField/TextField";
 import Button from "../../../UI/Forms/Button/Button";
 import {AuthApi} from "../../../../utils/api";
 import {AuthWithPhoneDto} from "../../../../utils/api/types";
+import axios, {AxiosError} from "axios";
+import {ValidationError} from "../../../../utils/axios/errors";
 
 interface PhoneSignInTabProps {
   toEmailTab: () => void;
@@ -23,7 +25,7 @@ const PhoneSignInTab: React.FC<PhoneSignInTabProps> = ({
     resolver: yupResolver(loginViaPhoneFormSchema)
   })
 
-  const onSubmit = async (dto: AuthWithPhoneDto) => {
+  const onSubmit: SubmitHandler<any> = async (dto: AuthWithPhoneDto) => {
     const phone = dto.phone
     dto.phone = dto.phone.replace(/[^\d]/g, '');
 
@@ -33,13 +35,9 @@ const PhoneSignInTab: React.FC<PhoneSignInTabProps> = ({
       toConfirmCodeTab(phone)
     } catch (err) {
 
-      if (err.response) {
-        if (err.response.status === 422) {
-          setErrorMessage(err.response.data.errors.phone.join('. '))
-        }
+      if (err instanceof ValidationError) {
+        setErrorMessage(err.message.errors.phone.join('. '))
       }
-
-      console.log(err.response)
 
       console.warn(err)
     }

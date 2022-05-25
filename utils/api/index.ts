@@ -1,4 +1,4 @@
-import axios from "axios";
+import {authInstance} from '../axios'
 import {
   AuthResponse,
   AuthWithEmailConfirmDto,
@@ -7,18 +7,6 @@ import {
   AuthWithPhoneDto,
   InitAuthResponse
 } from "./types";
-
-const instance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL
-})
-
-const authInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
-  headers: {
-    'client-id': String(process.env.NEXT_PUBLIC_CLIENT_ID),
-    'client-secret': String(process.env.NEXT_PUBLIC_CLIENT_SECRE)
-  }
-})
 
 export const AuthApi = {
   async phone(dto: AuthWithPhoneDto): Promise<InitAuthResponse> {
@@ -38,7 +26,6 @@ export const AuthApi = {
 
   async emailConfirm(dto: AuthWithEmailConfirmDto) {
     const { data } = await authInstance.post('/api/v1/auth/sign-in', dto, {withCredentials: true})
-    // const { data } = await authInstance.post('/api/v1/auth/sign-in', dto)
     return data;
   }
 }

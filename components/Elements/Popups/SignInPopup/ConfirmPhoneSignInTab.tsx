@@ -1,5 +1,5 @@
 import React from 'react';
-import {useForm} from "react-hook-form";
+import {SubmitHandler, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {setCookie} from 'nookies';
 
@@ -22,7 +22,7 @@ const ConfirmPhoneSignInTab: React.FC<ConfirmPhoneSignInTabProps> = ({
     resolver: yupResolver(loginViaPhoneConfirmFormSchema)
   })
 
-  const onSubmitConfirm = async (dto: AuthWithPhoneConfirmDto) => {
+  const onSubmitConfirm: SubmitHandler<any> = async (dto: AuthWithPhoneConfirmDto) => {
     dto.phone = dto.phone.replace(/[^\d]/g, '');
 
     try {

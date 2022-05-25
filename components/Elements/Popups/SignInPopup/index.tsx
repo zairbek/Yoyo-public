@@ -10,8 +10,8 @@ const Popup = dynamic(() => import('reactjs-popup'), { ssr: false });
 const SignInPopupIndex = () => {
   const [isOpen, togglePopup] = useState(false);
   const [currentTab, setCurrentTab] = useState<"phoneLogin" | "emailLogin" | "confirmPhoneLogin" | "confirmEmailLogin">('phoneLogin');
-  const [data, setData] = useState({phone: '', email: ''});
-
+  const [phoneState, setPhone] = useState('');
+  const [emailState, setEmail] = useState('');
 
   return (
     <>
@@ -30,14 +30,14 @@ const SignInPopupIndex = () => {
             <PhoneSignInTab
               toEmailTab={() => setCurrentTab('emailLogin')}
               toConfirmCodeTab={(phone) => {
-                setData({phone: phone})
+                setPhone(phone)
                 setCurrentTab('confirmPhoneLogin')
               }}
             />
           }
           {currentTab === 'confirmPhoneLogin' &&
             <ConfirmPhoneSignInTab
-              phone={data.phone}
+              phone={phoneState}
               onBack={() => setCurrentTab('phoneLogin')}
             />
           }
@@ -46,14 +46,14 @@ const SignInPopupIndex = () => {
             <EmailSignInTab
               onBack={() => setCurrentTab('phoneLogin')}
               toConfirmCodeTab={(email) => {
-                setData({email: email})
+                setEmail(email)
                 setCurrentTab('confirmEmailLogin')
               }}
             />
           }
           {currentTab === 'confirmEmailLogin' &&
             <ConfirmEmailSignInTab
-              email={data.email}
+              email={emailState}
               onBack={() => setCurrentTab('emailLogin')}
             />
           }
