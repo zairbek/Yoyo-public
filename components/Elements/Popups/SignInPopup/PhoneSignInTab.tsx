@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 
@@ -17,6 +17,8 @@ const PhoneSignInTab: React.FC<PhoneSignInTabProps> = ({
   toEmailTab,
   toConfirmCodeTab,
 }) => {
+  const [errorMessage, setErrorMessage] = useState(null);
+
   const sendForm = useForm({
     resolver: yupResolver(loginViaPhoneFormSchema)
   })
@@ -26,9 +28,19 @@ const PhoneSignInTab: React.FC<PhoneSignInTabProps> = ({
     dto.phone = dto.phone.replace(/[^\d]/g, '');
 
     try {
-      // const data = await AuthApi.phone(dto)
+      await AuthApi.phone(dto)
+      setErrorMessage(null);
       toConfirmCodeTab(phone)
     } catch (err) {
+
+      if (err.response) {
+        if (err.response.status === 422) {
+          setErrorMessage(err.response.data.errors.phone.join('. '))
+        }
+      }
+
+      console.log(err.response)
+
       console.warn(err)
     }
   }
@@ -50,8 +62,8 @@ const PhoneSignInTab: React.FC<PhoneSignInTabProps> = ({
                 name="phone"
                 mask="+\9\96 (999) 99-99-99"
                 placeholder="+996 (___) __-__-__"
-                error={!!sendForm.formState.errors.phone?.message}
-                message={sendForm.formState.errors.phone?.message}
+                error={!!sendForm.formState.errors.phone?.message || !!errorMessage}
+                message={sendForm.formState.errors.phone?.message ?? errorMessage}
                 form={sendForm.register('phone')}
               />
             </div>
