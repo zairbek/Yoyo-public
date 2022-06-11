@@ -7,11 +7,13 @@ import {isMobile} from "../../../libs/uaParser";
 import MainLayout from "../../../components/layouts/MainLayout/MainLayout";
 import Link from "next/link";
 import MobileSignInIndex from "../../../components/Elements/Popups/SignInPopup/MobileIndex";
+import {useAppSelector} from "../../../store/hooks";
+import {selectUserData} from "../../../store/slices/auth";
 
 const Dashboard: NextPage<NextPageProps> = ({isMobile}) => {
-  const state = true;
+  const userData = useAppSelector(selectUserData)
 
-  if (state) {
+  if (! userData) {
     return (
       <>
         <MainLayout

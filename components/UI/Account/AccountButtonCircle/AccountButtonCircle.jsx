@@ -1,12 +1,13 @@
 import React from 'react';
 import Link from 'next/link'
 import SignInPopup from "../../../Elements/Popups/SignInPopup";
+import {useAppSelector} from "../../../../store/hooks";
+import {selectUserData} from "../../../../store/slices/auth";
 
 const AccountButtonCircle = () => {
-  const state = true;
+  const userData = useAppSelector(selectUserData)
 
-
-  if (state) {
+  if (! userData) {
     return (
       <SignInPopup/>
     );

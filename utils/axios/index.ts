@@ -2,11 +2,13 @@ import axios, {AxiosResponse} from "axios";
 import {ErrorResponse, InternalServerError, ValidationError} from "./errors";
 
 export const instance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  withCredentials: true,
 })
 
 export const authInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
+  withCredentials: true,
   headers: {
     'client-id': String(process.env.NEXT_PUBLIC_CLIENT_ID),
     'client-secret': String(process.env.NEXT_PUBLIC_CLIENT_SECRE)

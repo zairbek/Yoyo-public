@@ -8,6 +8,8 @@ import TextField from "../../../UI/Forms/TextField/TextField";
 import Button from "../../../UI/Forms/Button/Button";
 import {AuthApi} from "../../../../utils/api";
 import {AuthWithPhoneConfirmDto} from "../../../../utils/api/types";
+import {useAppDispatch} from "../../../../store/hooks";
+import {setUserData} from "../../../../store/slices/auth";
 
 interface ConfirmPhoneSignInTabProps {
   phone: string;
@@ -18,6 +20,7 @@ const ConfirmPhoneSignInTab: React.FC<ConfirmPhoneSignInTabProps> = ({
   phone,
   onBack,
 }) => {
+  const dispatch = useAppDispatch()
   const confirmForm = useForm({
     resolver: yupResolver(loginViaPhoneConfirmFormSchema)
   })
@@ -27,9 +30,16 @@ const ConfirmPhoneSignInTab: React.FC<ConfirmPhoneSignInTabProps> = ({
 
     try {
       const data = await AuthApi.phoneConfirm(dto)
-      setCookie(null, 'token', data.token.token_type + ' ' + data.token.access_token, {
-        maxAge: data.token.expires_in
+      const token = data.token.token_type + ' ' + data.token.access_token
+      setCookie(null, 'token', token, {
+        maxAge: data.token.expires_in,
+        path: '/',
       })
+
+      const userData = await AuthApi.me(token);
+      dispatch(setUserData(userData))
+
+      console.log(userData)
     } catch (err) {
       console.warn(err)
     }
