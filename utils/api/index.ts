@@ -1,53 +1,31 @@
-import {authInstance, instance} from '../axios'
-import {
-  AuthResponse,
-  AuthWithEmailConfirmDto,
-  AuthWithEmailDto,
-  AuthWithPhoneConfirmDto,
-  AuthWithPhoneDto,
-  InitAuthResponse
-} from "./types";
-import {AxiosResponseHeaders} from "axios";
+import axios from "axios";
+import {GetServerSidePropsContext, NextPageContext} from "next";
+import Cookie, {parseCookies} from 'nookies';
 
-export const AuthApi = {
-  async phone(dto: AuthWithPhoneDto): Promise<InitAuthResponse> {
-    const { data } = await authInstance.post<AuthWithPhoneDto, { data: InitAuthResponse }>('/api/v1/auth/send', dto)
-    return data;
-  },
+import {UserApi} from "./user";
+import {AuthApi} from "./auth";
 
-  async phoneConfirm(dto: AuthWithPhoneConfirmDto): Promise<AuthResponse> {
-    const { data } = await authInstance.post<AuthWithPhoneConfirmDto, {data: AuthResponse}>('/api/v1/auth/sign-in', dto)
-    return data;
-  },
+export type ApiReturnType = {
+  auth: ReturnType<AuthApi>
+  user: ReturnType<UserApi>
+}
 
-  async email(dto: AuthWithEmailDto) {
-    const { data } = await authInstance.post('/api/v1/auth/send', dto)
-    return data;
-  },
+export const Api = (ctx?: NextPageContext | GetServerSidePropsContext): ApiReturnType => {
+  const cookies = ctx ? Cookie.get(ctx) : parseCookies();
+  const token = cookies.token;
 
-  async emailConfirm(dto: AuthWithEmailConfirmDto) {
-    const { data } = await authInstance.post('/api/v1/auth/sign-in', dto)
-    return data;
-  },
+  const instance = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    withCredentials: true,
+    headers: {
+      'client-id': String(process.env.NEXT_PUBLIC_CLIENT_ID),
+      'client-secret': String(process.env.NEXT_PUBLIC_CLIENT_SECRET),
+      Authorization: token,
+    },
+  })
 
-  async refreshToken(refreshToken: string): Promise<{data: AuthResponse, headers: AxiosResponseHeaders}> {
-    const { data, headers } = await authInstance.post<string, {data: AuthResponse, headers: AxiosResponseHeaders}>('/api/v1/auth/refresh-token', {}, {
-      headers: {
-        Cookie: `refresh-token=${refreshToken}`
-      }
-    })
-    return {
-      data,
-      headers
-    };
-  },
-
-  async me(token: string) {
-    const { data } = await instance.get('/api/v1/account', {
-      headers: {
-        Authorization: token
-      }
-    })
-    return data;
+  return {
+    auth: AuthApi(instance),
+    user: UserApi(instance)
   }
 }

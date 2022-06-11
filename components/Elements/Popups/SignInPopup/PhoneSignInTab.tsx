@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
-import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
+import {SubmitHandler, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 
 import {loginViaPhoneFormSchema} from "../../../../utils/validations/login";
 import TextField from "../../../UI/Forms/TextField/TextField";
 import Button from "../../../UI/Forms/Button/Button";
-import {AuthApi} from "../../../../utils/api";
+import {Api} from "../../../../utils/api";
 import {AuthWithPhoneDto} from "../../../../utils/api/types";
-import axios, {AxiosError} from "axios";
 import {ValidationError} from "../../../../utils/axios/errors";
 
 interface PhoneSignInTabProps {
@@ -30,7 +29,7 @@ const PhoneSignInTab: React.FC<PhoneSignInTabProps> = ({
     dto.phone = dto.phone.replace(/[^\d]/g, '');
 
     try {
-      await AuthApi.phone(dto)
+      await Api().auth.phone(dto)
       setErrorMessage(null);
       toConfirmCodeTab(phone)
     } catch (err) {

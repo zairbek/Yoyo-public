@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app'
 import {parseCookies, setCookie} from "nookies";
 
 import {wrapper} from "../store/store";
-import {AuthApi} from "../utils/api";
+import {Api} from "../utils/api";
 import {setUserData} from "../store/slices/auth";
 import {isMobile} from "../libs/uaParser";
 
@@ -18,13 +18,14 @@ App.getInitialProps = wrapper.getInitialAppProps(
   store =>
     async ({ctx, Component}) => {
       const cookies = parseCookies(ctx)
+      const api = Api(ctx)
 
       try {
         if (cookies.token) {
-          const userData = await AuthApi.me(cookies.token);
+          const userData = await api.user.me();
 
           if (! userData && cookies['refresh-token']) {
-            const {data, headers} = await AuthApi.refreshToken(cookies['refresh-token'])
+            const {data, headers} = await api.auth.refreshToken(cookies['refresh-token'])
             if (data) {
               const token = data.token.token_type + ' ' + data.token.access_token
               ctx.res?.setHeader('set-cookie', headers['set-cookie'])
@@ -33,7 +34,7 @@ App.getInitialProps = wrapper.getInitialAppProps(
                 path: '/',
               });
 
-              const userData = await AuthApi.me(token);
+              const userData = await api.user.me();
               store.dispatch(setUserData(userData))
             }
           } else {

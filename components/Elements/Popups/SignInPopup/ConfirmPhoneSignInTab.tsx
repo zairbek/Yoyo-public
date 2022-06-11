@@ -6,10 +6,10 @@ import {setCookie} from 'nookies';
 import {loginViaPhoneConfirmFormSchema} from "../../../../utils/validations/login";
 import TextField from "../../../UI/Forms/TextField/TextField";
 import Button from "../../../UI/Forms/Button/Button";
-import {AuthApi} from "../../../../utils/api";
 import {AuthWithPhoneConfirmDto} from "../../../../utils/api/types";
 import {useAppDispatch} from "../../../../store/hooks";
 import {setUserData} from "../../../../store/slices/auth";
+import {Api} from "../../../../utils/api";
 
 interface ConfirmPhoneSignInTabProps {
   phone: string;
@@ -29,14 +29,14 @@ const ConfirmPhoneSignInTab: React.FC<ConfirmPhoneSignInTabProps> = ({
     dto.phone = dto.phone.replace(/[^\d]/g, '');
 
     try {
-      const data = await AuthApi.phoneConfirm(dto)
+      const data = await Api().auth.phoneConfirm(dto)
       const token = data.token.token_type + ' ' + data.token.access_token
       setCookie(null, 'token', token, {
         maxAge: data.token.expires_in,
         path: '/',
       })
 
-      const userData = await AuthApi.me(token);
+      const userData = await Api().user.me();
       dispatch(setUserData(userData))
 
       console.log(userData)
