@@ -11,7 +11,7 @@ export const authInstance = axios.create({
   withCredentials: true,
   headers: {
     'client-id': String(process.env.NEXT_PUBLIC_CLIENT_ID),
-    'client-secret': String(process.env.NEXT_PUBLIC_CLIENT_SECRE)
+    'client-secret': String(process.env.NEXT_PUBLIC_CLIENT_SECRET)
   }
 })
 

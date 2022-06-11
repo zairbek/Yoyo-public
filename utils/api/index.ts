@@ -7,6 +7,7 @@ import {
   AuthWithPhoneDto,
   InitAuthResponse
 } from "./types";
+import {AxiosResponseHeaders} from "axios";
 
 export const AuthApi = {
   async phone(dto: AuthWithPhoneDto): Promise<InitAuthResponse> {
@@ -27,6 +28,18 @@ export const AuthApi = {
   async emailConfirm(dto: AuthWithEmailConfirmDto) {
     const { data } = await authInstance.post('/api/v1/auth/sign-in', dto)
     return data;
+  },
+
+  async refreshToken(refreshToken: string): Promise<{data: AuthResponse, headers: AxiosResponseHeaders}> {
+    const { data, headers } = await authInstance.post<string, {data: AuthResponse, headers: AxiosResponseHeaders}>('/api/v1/auth/refresh-token', {}, {
+      headers: {
+        Cookie: `refresh-token=${refreshToken}`
+      }
+    })
+    return {
+      data,
+      headers
+    };
   },
 
   async me(token: string) {
