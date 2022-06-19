@@ -7,6 +7,7 @@ import {setUserData} from "../store/slices/auth";
 import {isMobile} from "../libs/uaParser";
 
 import '../styles/globals.scss'
+import {AxiosError} from "axios";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -18,14 +19,14 @@ App.getInitialProps = wrapper.getInitialAppProps(
   store =>
     async ({ctx, Component}) => {
       const cookies = parseCookies(ctx)
-      const api = Api(ctx)
-
       try {
-        if (cookies.token) {
-          const userData = await api.user.me();
+        const userData = await Api(ctx).user.me();
+        store.dispatch(setUserData(userData))
+      } catch (err) {
 
-          if (! userData && cookies['refresh-token']) {
-            const {data, headers} = await api.auth.refreshToken(cookies['refresh-token'])
+        if (err instanceof AxiosError && err.response.status === 401) {
+          try {
+            const {data, headers} = await Api(ctx).auth.refreshToken(cookies['refresh-token'])
             if (data) {
               const token = data.token.token_type + ' ' + data.token.access_token
               ctx.res?.setHeader('set-cookie', headers['set-cookie'])
@@ -34,16 +35,15 @@ App.getInitialProps = wrapper.getInitialAppProps(
                 path: '/',
               });
 
-              const userData = await api.user.me();
+              const userData = await Api(ctx).user.me(token);
               store.dispatch(setUserData(userData))
             }
-          } else {
-            store.dispatch(setUserData(userData))
+          } catch (err) {
+            console.log('refresh-token', err)
           }
+        } else {
+          console.log('me', err)
         }
-
-      } catch (err) {
-        console.log(err)
       }
 
       return {

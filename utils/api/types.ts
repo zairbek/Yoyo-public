@@ -27,3 +27,7 @@ export type AuthTokens = {
 export type AuthResponse = {
   token: AuthTokens
 }
+
+export type UserResponse = {
+
+}
