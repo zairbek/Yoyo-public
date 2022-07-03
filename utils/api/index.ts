@@ -20,7 +20,7 @@ export const Api = (ctx?: NextPageContext | GetServerSidePropsContext): ApiRetur
     headers: {
       'client-id': String(process.env.NEXT_PUBLIC_CLIENT_ID),
       'client-secret': String(process.env.NEXT_PUBLIC_CLIENT_SECRET),
-      Authorization: token,
+      'X-Access-Token': token,
     },
   })
 
