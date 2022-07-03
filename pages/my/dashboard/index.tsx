@@ -3,12 +3,12 @@ import React from "react";
 
 import {NextPageProps} from "../../index";
 import MyPageLayout from "../../../components/layouts/MyPageLayout/MyPageLayout";
-import {isMobile} from "../../../libs/uaParser";
 import MainLayout from "../../../components/layouts/MainLayout/MainLayout";
 import Link from "next/link";
 import MobileSignInIndex from "../../../components/Elements/Popups/SignInPopup/MobileIndex";
 import {useAppSelector} from "../../../store/hooks";
 import {selectUserData} from "../../../store/slices/auth";
+import {isMobile} from "../../../libs/uaParser";
 
 const Dashboard: NextPage<NextPageProps> = ({isMobile}) => {
   const userData = useAppSelector(selectUserData)
@@ -101,6 +101,12 @@ const Dashboard: NextPage<NextPageProps> = ({isMobile}) => {
 
     </MyPageLayout>
   )
+}
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  return {
+    props: {isMobile: isMobile(ctx.req)}
+  }
 }
 
 export default Dashboard;

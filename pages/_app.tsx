@@ -4,7 +4,6 @@ import {parseCookies, setCookie} from "nookies";
 import {wrapper} from "../store/store";
 import {Api} from "../utils/api";
 import {setUserData} from "../store/slices/auth";
-import {isMobile} from "../libs/uaParser";
 
 import '../styles/globals.scss'
 import {AxiosError} from "axios";
@@ -49,7 +48,6 @@ App.getInitialProps = wrapper.getInitialAppProps(
       return {
         pageProps: {
           ...(Component.getInitialProps ? await Component.getInitialProps({...ctx, store}) : {}),
-          isMobile: isMobile(ctx.req)
         }
       }
     }
