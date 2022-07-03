@@ -103,10 +103,4 @@ const Dashboard: NextPage<NextPageProps> = ({isMobile}) => {
   )
 }
 
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  return {
-    props: {isMobile: isMobile(ctx.req)}
-  }
-}
-
 export default Dashboard;

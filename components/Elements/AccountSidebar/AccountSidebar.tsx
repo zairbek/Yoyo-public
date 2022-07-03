@@ -1,6 +1,9 @@
 import React from 'react';
 import Link from "next/link";
 import classNames from "classnames";
+import {useAppSelector} from "../../../store/hooks";
+import {selectUserData} from "../../../store/slices/auth";
+import Avatar from "../../UI/Avatar/Avatar";
 
 interface AccountSidebarProps {
   className?: string;
@@ -11,6 +14,38 @@ const AccountSidebar: React.FC<AccountSidebarProps> = ({
   className,
   isMobile = false
 }) => {
+  const userData = useAppSelector(selectUserData)
+
+  if (!userData) {
+    return <p>err</p>;
+  }
+
+  let displayName;
+  let imagePlaceholder;
+
+  switch (true) {
+    case !! userData.first_name || userData.last_name:
+      displayName = `${userData.first_name} ${userData.last_name}`;
+      imagePlaceholder = `${userData?.first_name[0]} ${userData?.last_name[0]}`
+      break;
+    case !! userData.email:
+      displayName = userData.email
+      imagePlaceholder = userData.email.substring(0, 2)
+      break
+    case !! userData.login:
+      displayName = userData.login
+      imagePlaceholder = userData.login.substring(0, 2)
+      break
+    case !! userData.phone_number:
+      displayName = userData.phone_number;
+      imagePlaceholder = userData.phone_number.slice(-2)
+      break
+    default:
+      displayName = userData.id
+      imagePlaceholder = userData.id
+  }
+
+
   return (
     <aside className={classNames(
       "top-20 lg:basis-1/5 bg-white shadow-md mr-8 rounded-2xl overflow-hidden",
@@ -23,11 +58,22 @@ const AccountSidebar: React.FC<AccountSidebarProps> = ({
         !isMobile ? 'flex-col p-5' : 'flex-row'
       )}>
         {/* @url https://daisyui.com/components/avatar/#avatar-placeholder */}
+
+        <Avatar
+          src={userData.avatar}
+          placeholder={imagePlaceholder}
+          alt={displayName}
+          size={'w-24 lg:w-32 '}
+        />
+
         <div className="avatar lg:mx-auto m-4">
           <div className="w-24 lg:w-32 rounded-full">
             <img src="https://api.lorem.space/image/face?hash=92310"/>
           </div>
         </div>
+
+
+
 
         <div className="flex flex-col">
           <span className="font-bold text-xl">Заир</span>

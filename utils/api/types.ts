@@ -29,5 +29,15 @@ export type AuthResponse = {
 }
 
 export type UserResponse = {
-
+  id: number
+  login?: string
+  email?: string
+  first_name?: string
+  last_name?: string
+  middle_name?: string
+  phone_number?: string
+  avatar?: string
+  birthday?: string
+  gender?: string
+  status?: string
 }

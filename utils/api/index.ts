@@ -12,7 +12,7 @@ export type ApiReturnType = {
 
 export const Api = (ctx?: NextPageContext | GetServerSidePropsContext): ApiReturnType => {
   const cookies = ctx ? Cookie.get(ctx) : parseCookies();
-  const token = cookies.token;
+  const token = cookies.token ?? null;
 
   const instance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,

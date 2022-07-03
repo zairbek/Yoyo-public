@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import {AuthResponse} from "../../utils/api/types";
+import {AuthResponse, UserResponse} from "../../utils/api/types";
 import {RootState} from "../store";
 import {HYDRATE} from "next-redux-wrapper";
 
 
 export interface UserState {
-  data: AuthResponse | null;
+  data: UserResponse | null;
 }
 
 const initialState: UserState = {
@@ -17,7 +17,7 @@ export const userSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setUserData: (state, action: PayloadAction<AuthResponse>) => {
+    setUserData: (state, action: PayloadAction<UserResponse>) => {
       state.data = action.payload;
     },
   },
