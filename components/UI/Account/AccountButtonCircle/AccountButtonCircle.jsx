@@ -1,12 +1,15 @@
 import React from 'react';
 import Link from 'next/link'
 import SignInPopup from "../../../Elements/Popups/SignInPopup";
-import {useAppSelector} from "../../../../store/hooks";
-import {selectUserData} from "../../../../store/slices/auth";
+import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
+import {selectUserData, setUserData} from "../../../../store/slices/auth";
 import Avatar from "../../Avatar/Avatar";
+import {Api} from "../../../../utils/api";
+import {destroyCookie} from 'nookies'
 
 const AccountButtonCircle = () => {
   const userData = useAppSelector(selectUserData)
+  const dispatch = useAppDispatch()
 
   if (! userData) {
     return (
@@ -40,6 +43,14 @@ const AccountButtonCircle = () => {
   }
 
 
+  const logout = () => {
+    try {
+      Api().auth.signOut()
+      dispatch(setUserData(null))
+    } catch (e) {}
+    destroyCookie({}, 'token')
+  }
+
   return (
     <div className="dropdown dropdown-end">
 
@@ -69,7 +80,7 @@ const AccountButtonCircle = () => {
             <a>Настройки</a>
           </Link>
         </li>
-        <li><a>Выйти</a></li>
+        <li><a onClick={logout}>Выйти</a></li>
       </ul>
     </div>
   );

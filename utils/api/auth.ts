@@ -42,6 +42,6 @@ export const AuthApi = (instance: AxiosInstance) => ({
   },
 
   async signOut() {
-    return await instance.get('/api/v1/auth/')
+    return await instance.get('/api/v1/auth/sign-out')
   }
 })
