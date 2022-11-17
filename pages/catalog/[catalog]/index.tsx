@@ -19,8 +19,6 @@ const CategoryElements: NextPageWithLayout<NextPageProps> = ({
 
   return (
     <>
-      {isMobile && <Divider invisible/>}
-
       <Section isMobile={isMobile} className='my-5 px-2'>
         <BreadCrumbs/>
         <PageHeader/>

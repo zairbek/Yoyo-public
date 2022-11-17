@@ -1,0 +1,1 @@
+export {SliderPhoto} from './SliderPhoto'

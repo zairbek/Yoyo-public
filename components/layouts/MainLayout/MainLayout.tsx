@@ -4,6 +4,7 @@ import MobileNavigation from '../../MobileNavigation/MobileNavigation';
 import DesktopHeader from "../../Header/DesktopHeader";
 import MobileHeader from "../../Header/MobileHeader";
 import AppLayout, {AppLayoutProps} from "../AppLayout/AppLayout";
+import {Divider} from "../../shared/Divider";
 
 export interface MainLayoutProps extends AppLayoutProps{
   hideHeader?: boolean;
@@ -43,6 +44,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
         ? !hideHeader && <MobileHeader showBackButton={showBackButton}/>
         : <DesktopHeader/>
       }
+      {isMobile && <Divider invisible/>}
 
       {children}
 
