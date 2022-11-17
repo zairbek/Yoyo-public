@@ -1,17 +1,27 @@
+import {NextPage} from "next";
 import type { AppProps } from 'next/app'
 import {parseCookies, setCookie} from "nookies";
+import {AxiosError} from "axios";
+import {ReactElement, ReactNode} from "react";
 
 import {wrapper} from "../store/store";
 import {Api} from "../utils/api";
 import {setUserData} from "../store/slices/auth";
 
 import '../styles/globals.scss'
-import {AxiosError} from "axios";
 
-function App({ Component, pageProps }: AppProps) {
-  return (
-    <Component {...pageProps} />
-  )
+function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page)
+
+  return getLayout(<Component {...pageProps} />)
+}
+
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
 }
 
 App.getInitialProps = wrapper.getInitialAppProps(
@@ -22,8 +32,7 @@ App.getInitialProps = wrapper.getInitialAppProps(
         const userData = await Api(ctx).user.me();
         store.dispatch(setUserData(userData))
       } catch (err) {
-
-        if (err instanceof AxiosError && err.response.status === 401) {
+        if (err instanceof AxiosError && err.response?.status === 401) {
           try {
             const {data, headers} = await Api(ctx).auth.refreshToken(cookies['refresh-token'])
             if (data) {

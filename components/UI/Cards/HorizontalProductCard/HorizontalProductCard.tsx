@@ -9,7 +9,11 @@ import Rating from "../../Rating/Rating/Rating";
 import 'swiper/css';
 import "swiper/css/pagination";
 
-const HorizontalProductCard: React.FC = ({data}) => {
+interface HorizontalProductCardProps {
+  data: object
+}
+
+const HorizontalProductCard: React.FC<HorizontalProductCardProps> = ({data}) => {
   let link = '/product/test';
 
   return (

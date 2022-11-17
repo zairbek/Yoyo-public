@@ -48,7 +48,7 @@ const AccountButtonCircle = () => {
       Api().auth.signOut()
       dispatch(setUserData(null))
     } catch (e) {}
-    destroyCookie({}, 'token')
+    destroyCookie(null, 'token')
   }
 
   return (
