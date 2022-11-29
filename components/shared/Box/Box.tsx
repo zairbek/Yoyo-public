@@ -6,26 +6,34 @@ export enum Directions {
   Col = 'flex flex-col',
 }
 
+export enum BoxSizes {
+  compact = 'p-4',
+  normal = 'p-6',
+}
+
 interface BoxProps {
   className?: string;
   children?: React.ReactNode;
   isMobile?: boolean;
-  direction?: Directions
+  direction?: Directions;
+  size?: BoxSizes;
 }
 
 const Box: React.FC<BoxProps> = ({
   className,
   children,
   isMobile,
-  direction = Directions.Row
+  direction = Directions.Row,
+  size = BoxSizes.normal,
 }) => {
   return (
     <div className={cx(
       className,
       direction,
-      "bg-white shadow-md rounded-2xl p-4 mb-4",
+      "bg-white shadow-md rounded-2xl mb-4",
       'gap-4',
-      isMobile && 'flex-col'
+      isMobile && 'flex-col',
+      size
     )}>
       {children}
     </div>

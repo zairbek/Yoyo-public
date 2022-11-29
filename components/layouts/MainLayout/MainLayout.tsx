@@ -45,7 +45,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({
         : <DesktopHeader/>
       }
       {isMobile && <Divider invisible/>}
-
       {children}
 
       {isMobile && <MobileNavigation/>}
