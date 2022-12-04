@@ -1,9 +1,9 @@
 import React from 'react';
-import {IconProps, Sizes} from "../index";
+import {IconProps, IconSizes} from "../../index";
 import cx from "classnames";
 
 const Language: React.FC<IconProps> = ({
-  size = Sizes.medium
+  size = IconSizes.medium
 }) => {
   return (
     <svg className={cx(size)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">

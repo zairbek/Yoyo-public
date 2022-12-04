@@ -1,9 +1,10 @@
-import Router from 'next/router'
 import React from 'react';
-import classNames from "classnames";
 
 import MainLayout, {MainLayoutProps} from "../MainLayout/MainLayout";
-import AccountSidebar from "../../../components/Elements/AccountSidebar/AccountSidebar";
+import {AccountSidebar} from "../../features/myPage/AccountSidebar";
+import {Section, SectionDirections} from "../../shared/Section";
+import {Box} from "../../shared/Box";
+import {MyPageMobileHeader} from "../../features/myPage/MyPageMobileHeader";
 
 interface MyPageLayoutProps extends MainLayoutProps{
   rootClassName?: string;
@@ -40,45 +41,25 @@ const MyPageLayout: React.FC<MyPageLayoutProps> = ({
       hideHeader
     >
 
-      {!isMobile
-        ? (
-          <div className="lg:container min-w-[1024px] flex flex-row items-start mx-auto my-6">
-            <AccountSidebar className="sticky"/>
-
-            <main className={classNames("flex-1 bg-white shadow-md rounded-2xl", className)}>
-              <div className="p-5">
-
-                {children}
-
-              </div>
-            </main>
-          </div>
-        )
-        : (
-          <div className="container flex flex-col items-start mx-auto pb-20">
-
-            {/*{!showSidebar && (*/}
-              <div className="flex items-center w-full p-3 sticky top-0 z-10 bg-base-200">
-                <button className="btn btn-xs btn-ghost" onClick={() => Router.back()}>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-                </button>
-                <h2 className="text-sm">
-                  {title}
-                </h2>
-              </div>
-            {/*)}*/}
+      {isMobile
+        ?
+        (<Section isMobile>
+            {!showSidebar && <MyPageMobileHeader title={title}/>}
 
             {showSidebar && <AccountSidebar isMobile />}
 
-            <main className={classNames("flex-1 w-full bg-white shadow-md rounded-2xl", className)}>
-              <div className="p-3">
+            <Box isMobile className="flex-1">
+              {children}
+            </Box>
+          </Section>)
+        :
+        (<Section direction={SectionDirections.Row} className="my-6 gap-4">
+            <AccountSidebar/>
 
-                {children}
-
-              </div>
-            </main>
-          </div>
-        )
+            <Box className="flex-1">
+              {children}
+            </Box>
+          </Section>)
       }
     </MainLayout>
   );

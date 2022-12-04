@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from "classnames";
 
-export enum Sizes {
+export enum MenuSizes {
   Compact = 'menu-compact',
   Normal = 'menu-normal',
 }
@@ -9,7 +9,7 @@ export enum Sizes {
 interface MenuProps {
   children?: React.ReactNode;
   rounded?: boolean;
-  size?: Sizes;
+  size?: MenuSizes;
   horizontal?: boolean;
   padding?: string;
 }
@@ -17,7 +17,7 @@ interface MenuProps {
 const Menu: React.FC<MenuProps> = ({
   children,
   rounded,
-  size = Sizes.Normal,
+  size = MenuSizes.Normal,
   horizontal,
   padding = 'p-2'
 }) => {

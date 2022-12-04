@@ -3,13 +3,6 @@ import {Section} from "../../../../shared/Section";
 import {Box} from "../../../../shared/Box";
 import {BoxDirections, BoxSizes} from "../../../../shared/Box/Box";
 import MobileSignInIndex from "../../../../Elements/Popups/SignInPopup/MobileIndex";
-import {Menu, MenuItem, MenuTitle} from "../../../../shared/Menu";
-import {Sizes} from "../../../../shared/Menu/Menu";
-import Location from "../../../../shared/Icon/Icons/Location";
-import Currency from "../../../../shared/Icon/Icons/Currency";
-import Help from "../../../../shared/Icon/Icons/Help";
-import Language from "../../../../shared/Icon/Icons/Language";
-import {Badge} from "../../../../shared/Badge";
 import {ApplicationMenu} from "../ApplicationMenu";
 
 interface UnauthorizedPageProps {

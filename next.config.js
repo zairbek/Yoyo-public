@@ -10,6 +10,11 @@ const nextConfig = {
       },
     ]
   },
+
+  images: {
+      // for mock images
+    domains: ['api.lorem.space']
+  },
 }
 
 module.exports = nextConfig

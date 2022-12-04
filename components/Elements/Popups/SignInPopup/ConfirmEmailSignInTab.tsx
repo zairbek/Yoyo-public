@@ -6,7 +6,7 @@ import {setCookie} from 'nookies';
 import {loginViaEmailConfirmFormSchema} from "../../../../utils/validations/login";
 import TextField from "../../../UI/Forms/TextField/TextField";
 import Button from "../../../UI/Forms/Button/Button";
-import {AuthApi} from "../../../../utils/api";
+// import {AuthApi} from "../../../../utils/api";
 import {AuthWithEmailConfirmDto} from "../../../../utils/api/types";
 
 interface ConfirmEmailSignInTabProps {

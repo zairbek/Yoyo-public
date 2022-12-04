@@ -1,0 +1,1 @@
+export {MyPageMobileHeader} from './MyPageMobileHeader'
