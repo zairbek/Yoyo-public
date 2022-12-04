@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-export enum Directions {
+export enum BoxDirections {
   Row = 'flex flex-row',
   Col = 'flex flex-col',
 }
@@ -15,7 +15,7 @@ interface BoxProps {
   className?: string;
   children?: React.ReactNode;
   isMobile?: boolean;
-  direction?: Directions;
+  direction?: BoxDirections;
   size?: BoxSizes;
 }
 
@@ -23,7 +23,7 @@ const Box: React.FC<BoxProps> = ({
   className,
   children,
   isMobile,
-  direction = Directions.Row,
+  direction = BoxDirections.Row,
   size = BoxSizes.normal,
 }) => {
   return (

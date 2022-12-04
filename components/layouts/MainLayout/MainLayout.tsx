@@ -44,7 +44,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
         ? !hideHeader && <MobileHeader showBackButton={showBackButton}/>
         : <DesktopHeader/>
       }
-      {isMobile && <Divider invisible/>}
+      {isMobile && !hideHeader && <Divider invisible/>}
       {children}
 
       {isMobile && <MobileNavigation/>}

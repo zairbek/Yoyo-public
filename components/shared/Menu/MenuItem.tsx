@@ -1,5 +1,7 @@
 import React from 'react';
 import cx from "classnames";
+import Link from "next/link";
+import {Badge} from "../Badge";
 
 interface MenuItemProps {
   to?: string;
@@ -9,6 +11,7 @@ interface MenuItemProps {
   disabled?: boolean;
   bordered?: boolean;
   icon?: React.ReactNode;
+  endElement?: React.ReactNode;
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({
@@ -18,26 +21,38 @@ const MenuItem: React.FC<MenuItemProps> = ({
   active,
   disabled,
   bordered,
-  icon
+  icon,
+  endElement,
 }) => {
 
-  return (
-    <li className={cx(
-      className,
-      disabled && 'disabled',
-      bordered && 'hover-bordered',
-    )}>
-      <a
-        href={to}
-        className={cx(
-          active && 'active',
+  const a = (
+    <a
+      href={to}
+      className={cx(
+        'flex justify-between',
+        active && 'active',
         )}
-      >
+    >
+      <span className="flex gap-2">
         {icon}
         {children}
-      </a>
-    </li>
-  );
+      </span>
+
+      {endElement}
+    </a>
+  )
+
+  return (<li className={cx(className, disabled && 'disabled', bordered && 'hover-bordered',)}>
+
+    {to ?
+      (<Link href={to}>
+        {a}
+      </Link>)
+      : a
+    }
+
+
+    </li>);
 };
 
 export {MenuItem};
