@@ -8,5 +8,6 @@ export const data: User = {
   email: "zair.nur@yandex.ru",
   login: "zair.nur",
   phoneNumber: "+996224955454",
-  avatar: null,
+  avatar: 'https://api.lorem.space/image/face?w=150&h=150',
+  // avatar: null,
 }

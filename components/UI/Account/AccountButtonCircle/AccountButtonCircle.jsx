@@ -1,15 +1,10 @@
 import React from 'react';
 import Link from 'next/link'
 import SignInPopup from "../../../Elements/Popups/SignInPopup";
-import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
-import {selectUserData, setUserData} from "../../../../store/slices/auth";
 import Avatar from "../../Avatar/Avatar";
-import {Api} from "../../../../utils/api";
-import {destroyCookie} from 'nookies'
+import {data as userData} from '../../../../mocks/user.mock'
 
 const AccountButtonCircle = () => {
-  const userData = useAppSelector(selectUserData)
-  const dispatch = useAppDispatch()
 
   if (! userData) {
     return (
@@ -21,9 +16,9 @@ const AccountButtonCircle = () => {
   let imagePlaceholder;
 
   switch (true) {
-    case !! userData.first_name || userData.last_name:
-      displayName = `${userData.first_name} ${userData.last_name}`;
-      imagePlaceholder = `${userData?.first_name[0]} ${userData?.last_name[0]}`
+    case !! userData.firstName || userData.lastName:
+      displayName = `${userData.firstName} ${userData.lastName}`;
+      imagePlaceholder = `${userData?.firstName[0]} ${userData?.lastName[0]}`
       break;
     case !! userData.email:
       displayName = userData.email
@@ -33,22 +28,13 @@ const AccountButtonCircle = () => {
       displayName = userData.login
       imagePlaceholder = userData.login.substring(0, 2)
       break
-    case !! userData.phone_number:
-      displayName = userData.phone_number;
-      imagePlaceholder = userData.phone_number.slice(-2)
+    case !! userData.phoneNumber:
+      displayName = userData.phoneNumber;
+      imagePlaceholder = userData.phoneNumber.slice(-2)
       break
     default:
       displayName = userData.id
       imagePlaceholder = userData.id
-  }
-
-
-  const logout = () => {
-    try {
-      Api().auth.signOut()
-      dispatch(setUserData(null))
-    } catch (e) {}
-    destroyCookie(null, 'token')
   }
 
   return (
@@ -80,7 +66,7 @@ const AccountButtonCircle = () => {
             <a>Настройки</a>
           </Link>
         </li>
-        <li><a onClick={logout}>Выйти</a></li>
+        <li><a>Выйти</a></li>
       </ul>
     </div>
   );

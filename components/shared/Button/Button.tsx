@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from "classnames";
+import Link from "next/link";
 
 export enum ButtonColors {
   primary = 'btn-primary',
@@ -25,6 +26,7 @@ export enum ButtonSize {
 
 export enum ButtonType {
   submit = 'submit',
+  link = 'link',
 }
 
 interface ButtonProps {
@@ -46,6 +48,7 @@ interface ButtonProps {
   loading?: boolean,
   type?: ButtonType,
   onClick?: () => void,
+  href?: string,
 }
 
 const responsiveSize = (state: boolean): string => {
@@ -74,27 +77,48 @@ const Button: React.FC<ButtonProps> = ({
   loading,
   type = ButtonType.submit,
   onClick,
+  href,
   }) => {
+
+  const classes = cx(
+    'btn normal-case',
+    color,
+    stateColor,
+    active && 'btn-active',
+    outline && 'btn-outline',
+    size,
+    responsiveSize(!! responsive),
+    wide && 'btn-wide',
+    glass && 'glass',
+    square && 'btn-square',
+    circle && 'btn-circle',
+    (afterIcon || beforeIcon) && 'gap-2',
+    block && 'btn-block',
+    loading && 'loading',
+    type,
+    onClick,
+  )
+
+  if (type === ButtonType.link) {
+
+    return (<Link href={href ?? ''}>
+      <a
+        href={href}
+        className={cx(
+          classes,
+          disabled && 'btn-disabled'
+        )}
+      >
+        {beforeIcon}
+        {children}
+        {afterIcon}
+      </a>
+    </Link>)
+  }
+
   return (
     <button
-      className={cx(
-        'btn normal-case',
-        color,
-        stateColor,
-        active && 'btn-active',
-        outline && 'btn-outline',
-        size,
-        responsiveSize(!! responsive),
-        wide && 'btn-wide',
-        glass && 'glass',
-        square && 'btn-square',
-        circle && 'btn-circle',
-        (afterIcon || beforeIcon) && 'gap-2',
-        block && 'btn-block',
-        loading && 'loading',
-        type,
-        onClick,
-      )}
+      className={classes}
       disabled={disabled}
     >
       {beforeIcon}
