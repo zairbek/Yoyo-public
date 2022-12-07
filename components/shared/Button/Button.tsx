@@ -49,6 +49,7 @@ interface ButtonProps {
   type?: ButtonType,
   onClick?: () => void,
   href?: string,
+  className?: string,
 }
 
 const responsiveSize = (state: boolean): string => {
@@ -78,6 +79,7 @@ const Button: React.FC<ButtonProps> = ({
   type = ButtonType.submit,
   onClick,
   href,
+  className,
   }) => {
 
   const classes = cx(
@@ -96,6 +98,7 @@ const Button: React.FC<ButtonProps> = ({
     block && 'btn-block',
     loading && 'loading',
     type,
+    className,
   )
 
   if (type === ButtonType.link) {
