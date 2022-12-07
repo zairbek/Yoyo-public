@@ -5,6 +5,7 @@ import {AccountSidebar} from "../../features/myPage/AccountSidebar";
 import {Section, SectionDirections} from "../../shared/Section";
 import {Box} from "../../shared/Box";
 import {MyPageMobileHeader} from "../../features/myPage/MyPageMobileHeader";
+import {BoxDirections} from "../../shared/Box/Box";
 
 interface MyPageLayoutProps extends MainLayoutProps{
   rootClassName?: string;
@@ -56,7 +57,7 @@ const MyPageLayout: React.FC<MyPageLayoutProps> = ({
         (<Section direction={SectionDirections.Row} className="my-6 gap-4">
             <AccountSidebar/>
 
-            <Box className="flex-1">
+            <Box className="flex-1" direction={BoxDirections.Col}>
               {children}
             </Box>
           </Section>)
