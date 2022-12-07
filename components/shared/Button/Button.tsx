@@ -96,7 +96,6 @@ const Button: React.FC<ButtonProps> = ({
     block && 'btn-block',
     loading && 'loading',
     type,
-    onClick,
   )
 
   if (type === ButtonType.link) {
@@ -108,6 +107,7 @@ const Button: React.FC<ButtonProps> = ({
           classes,
           disabled && 'btn-disabled'
         )}
+        onClick={onClick}
       >
         {beforeIcon}
         {children}
@@ -120,6 +120,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       className={classes}
       disabled={disabled}
+      onClick={onClick}
     >
       {beforeIcon}
       {children}
