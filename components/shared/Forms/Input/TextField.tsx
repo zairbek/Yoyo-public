@@ -12,6 +12,7 @@ interface TextFieldProps extends InputProps{
 
 const TextField: React.FC<TextFieldProps> = ({
   type = InputTypes.text,
+  name,
   defaultValue,
   placeholder,
   disabled,
@@ -41,7 +42,7 @@ const TextField: React.FC<TextFieldProps> = ({
         </label>
       }
 
-      <Input type={type} defaultValue={defaultValue} placeholder={placeholder} disabled={disabled} bordered={bordered} color={color} size={size} className={inputClassName}/>
+      <Input type={type} name={name} defaultValue={defaultValue} placeholder={placeholder} disabled={disabled} bordered={bordered} color={color} size={size} className={inputClassName}/>
 
       {!! message &&
         <label className="label">

@@ -28,10 +28,6 @@ const AccountButtonCircle = () => {
       displayName = userData.login
       imagePlaceholder = userData.login.substring(0, 2)
       break
-    case !! userData.phoneNumber:
-      displayName = userData.phoneNumber;
-      imagePlaceholder = userData.phoneNumber.slice(-2)
-      break
     default:
       displayName = userData.id
       imagePlaceholder = userData.id

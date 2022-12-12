@@ -1,7 +1,7 @@
 import {GetServerSidePropsContext, NextPage} from "next";
 
-import MainSettings from "../../../components/blocks/My/Settings/MainSettings";
-import ProfileSettings from "../../../components/blocks/My/Settings/ProfileSettings";
+import MainSettings from "../../../components/features/myPage/AccountSettingPage/MainSettings";
+import ProfileSettings from "../../../components/features/myPage/AccountSettingPage/ProfileSettings";
 import MyPageLayout from "../../../components/layouts/MyPageLayout/MyPageLayout";
 import {isMobile} from "../../../libs/uaParser";
 import {NextPageProps} from "../../index";

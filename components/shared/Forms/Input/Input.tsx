@@ -1,10 +1,6 @@
 import React from 'react';
 import cx from "classnames";
 
-export enum InputTypes {
-  text = 'text',
-}
-
 export enum InputColors {
   ghost = "input-ghost",
   primary = 'input-bordered input-primary',
@@ -24,7 +20,8 @@ export enum InputSizes {
 }
 
 export interface InputProps {
-  type?: InputTypes,
+  name: string,
+  type?: string,
   defaultValue?: string,
   placeholder?: string,
   disabled?: boolean,
@@ -35,7 +32,8 @@ export interface InputProps {
 }
 
 const Input: React.FC<InputProps> = ({
-  type = InputTypes.text,
+  type = 'text',
+  name,
   defaultValue,
   placeholder,
   disabled,
@@ -43,11 +41,10 @@ const Input: React.FC<InputProps> = ({
   color,
   size,
   className,
-
 }) => {
   return (
     <input
-      type={type} placeholder={placeholder}
+      type={type} placeholder={placeholder} name={name}
       defaultValue={defaultValue}
       disabled={disabled}
       className={cx(
