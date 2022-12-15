@@ -3,15 +3,18 @@ import {GetServerSidePropsContext} from "next";
 import {isMobile} from "../libs/uaParser";
 import {NextPageWithLayout} from "./_app";
 import {ReactElement} from "react";
+import TopVerticalCatalogs from "../components/features/indexPage/catalogs/TopVerticalCatalogs/TopVerticalCatalogs";
 
 export interface NextPageProps {
   isMobile: boolean;
 }
 
-const Home: NextPageWithLayout<NextPageProps> = ({}) => {
+const Home: NextPageWithLayout<NextPageProps> = ({
+  isMobile,
+}) => {
   return (
     <>
-      <p>test</p>
+      <TopVerticalCatalogs isMobile={isMobile}/>
     </>
   )
 }
