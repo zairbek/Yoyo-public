@@ -7,4 +7,6 @@ export const Routes = {
   settings: "/my/settings/",
   basket: '/my/basket',
   favorite: '/my/favorites',
+  orders: '/my/orders',
+  help: '/my/help',
 }
