@@ -1,16 +1,19 @@
 import React from 'react';
 import {GetServerSidePropsContext, NextPage} from "next";
+
 import {isMobile} from "../../../libs/uaParser";
-import MainLayout from "../../../components/layouts/MainLayout/MainLayout";
 import {NextPageProps} from "../../index";
+import MyPageLayout from "../../../components/layouts/MyPageLayout/MyPageLayout";
 
 const Favorites: NextPage<NextPageProps> = ({
   isMobile,
 }) => {
+  const title = 'Favorite'
+
   return (
-    <MainLayout isMobile={isMobile} title={'basket'} showBackButton description={'sdf'}>
-      favorites
-    </MainLayout>
+    <MyPageLayout title={title} description={'заказы'} isMobile={isMobile}>
+      favorite
+    </MyPageLayout>
   );
 };
 
