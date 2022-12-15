@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from "classnames";
 import cx from "classnames";
 import {data as userData} from '../../../../mocks/user.mock'
 import MiniUserCard from "./MiniUserCard";
@@ -8,7 +7,7 @@ import {BoxDirections, BoxSizes} from "../../../shared/Box/Box";
 import {Menu, MenuItem, MenuSizes, MenuTitle} from "../../../shared/Menu";
 import {personalData} from './AccountSidebar.data'
 import {ApplicationMenu} from "../dashboardPage/ApplicationMenu";
-import ShoppingBag from "../../../shared/Icon/Icons/Solid/ShoppingBag";
+import MobileSignInIndex from "../../../Elements/Popups/SignInPopup/MobileIndex";
 
 interface SideBarProps {
   className?: string;
@@ -21,50 +20,51 @@ const AccountSidebar: React.FC<SideBarProps> = ({
 }) => {
   return (
     <div>
-    <Box
-      isMobile={isMobile}
-      direction={BoxDirections.Col}
-      size={BoxSizes.compact}
-      className={cx(
-      isMobile && 'w-full'
-    )}>
+      <Box
+        isMobile={isMobile}
+        direction={BoxDirections.Col}
+        size={BoxSizes.compact}
+        className={cx(
+          isMobile ? 'w-full' : 'max-w-sm'
+        )}>
 
-      <div className={classNames(
-        "flex items-center gap-x-4",
-        !isMobile ? 'flex-col p-5' : 'flex-row'
-      )}>
+        {userData ? (<>
+            <div className={cx(
+              "flex items-center gap-x-4",
+              !isMobile ? 'flex-col p-5' : 'flex-row'
+            )}>
+              <MiniUserCard userData={userData}/>
+            </div>
+            <div className="divider my-0"/>
+          </>)
+          : (<Box isMobile={isMobile} shadow={false} size={BoxSizes.compact} className="px-6 py-8" direction={BoxDirections.Col}>
+              <h2 className="text-bold text-2xl mb-2">Войдите или зарегистрируйтесь</h2>
+              <p className="text-sm mb-2">Чтобы делать покупки, отслеживать заказы и пользоваться персональными скидками и баллами.</p>
+              <div>
+                <MobileSignInIndex/>
+              </div>
+            </Box>)
+        }
 
-        <MiniUserCard userData={userData}/>
+        <Menu size={MenuSizes.Compact}>
+          <MenuTitle>Личная информация</MenuTitle>
+          {personalData.map((data, key) => (
+            <MenuItem key={key} to={data.href} icon={data.icon}>{data.title}</MenuItem>
+          ))}
+        </Menu>
+      </Box>
 
-      </div>
+      <Box
+        isMobile={isMobile}
+        size={BoxSizes.compact}
+        direction={BoxDirections.Col}
+        className={cx(
+          isMobile && 'w-full'
+        )}>
+        <ApplicationMenu/>
+      </Box>
 
-      <div className="divider my-0"/>
-
-      <Menu size={MenuSizes.Compact}>
-        <MenuTitle>Личная информация</MenuTitle>
-        {personalData.map((data, key) => (
-          <MenuItem key={key} to={data.href} icon={data.icon}>{data.title}</MenuItem>
-        ))}
-      </Menu>
-
-
-      <Menu size={MenuSizes.Compact}>
-        <MenuTitle>Мои магазины</MenuTitle>
-        <MenuItem to="/my/stores/cross/" icon={<ShoppingBag/>}>Крассовки</MenuItem>
-      </Menu>
-    </Box>
-
-    <Box
-      isMobile={isMobile}
-      size={BoxSizes.compact}
-      direction={BoxDirections.Col}
-      className={cx(
-        isMobile && 'w-full'
-      )}>
-      <ApplicationMenu/>
-    </Box>
-
-  </div>);
+    </div>);
 };
 
 export {AccountSidebar};
