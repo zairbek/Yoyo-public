@@ -3,26 +3,12 @@ import React from "react";
 
 import {NextPageProps} from "../../index";
 import MyPageLayout from "../../../components/layouts/MyPageLayout/MyPageLayout";
-import MainLayout from "../../../components/layouts/MainLayout/MainLayout";
 import {isMobile} from "../../../libs/uaParser";
-import {UnauthorizedPage} from "../../../components/features/myPage/dashboardPage/UnathorizedPage";
-import {data as userData} from '../../../mocks/user.mock'
-
 
 const Dashboard: NextPage<NextPageProps> = ({isMobile}) => {
-  if (! userData) {
-    return (
-      <MainLayout title={'Dashboard'} description={'Dashboard'} isMobile={isMobile} hideHeader>
-        <UnauthorizedPage isMobile={isMobile}/>
-      </MainLayout>
-    )
-  }
-
-  console.table(userData)
-
   return (
     <MyPageLayout title={'Dashboard'} description={'Dashboard'} isMobile={isMobile} showSidebar={true}>
-
+      dashboard
     </MyPageLayout>
   )
 }

@@ -16,3 +16,5 @@ export const data: User = {
   birthday: '1994-03-14',
   sex: 'male'
 }
+
+// export const data: User|null = null

@@ -17,6 +17,7 @@ interface BoxProps {
   isMobile?: boolean;
   direction?: BoxDirections;
   size?: BoxSizes;
+  shadow?: boolean;
 }
 
 const Box: React.FC<BoxProps> = ({
@@ -25,15 +26,17 @@ const Box: React.FC<BoxProps> = ({
   isMobile,
   direction = BoxDirections.Row,
   size = BoxSizes.normal,
+  shadow = true,
 }) => {
   return (
     <div className={cx(
       className,
       direction,
-      "bg-white shadow-md rounded-2xl mb-4",
+      "bg-white rounded-2xl mb-4",
       'gap-4',
       isMobile && 'flex-col',
-      size
+      size,
+      shadow && 'shadow-md'
     )}>
       {children}
     </div>

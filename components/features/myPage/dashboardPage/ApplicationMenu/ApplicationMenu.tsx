@@ -5,6 +5,7 @@ import Location from "../../../../shared/Icon/Icons/Outline/Location";
 import Language from "../../../../shared/Icon/Icons/Outline/Language";
 import Currency from "../../../../shared/Icon/Icons/Outline/Currency";
 import Help from "../../../../shared/Icon/Icons/Outline/Help";
+import {Routes} from "../../../../../utils/routes";
 
 const ApplicationMenu: React.FC = () => {
   return (
@@ -23,13 +24,15 @@ const ApplicationMenu: React.FC = () => {
         Язык
       </MenuItem>
       <MenuItem
-        to="/my/settings/currency"
         icon={<Currency/>}
         endElement={<Badge outline>KGZ</Badge>}
       >
         Валюта
       </MenuItem>
-      <MenuItem icon={<Help/>}>Помощь</MenuItem>
+      <MenuItem
+        icon={<Help/>}
+        to={Routes.help}
+      >Помощь</MenuItem>
     </Menu>
   );
 };
