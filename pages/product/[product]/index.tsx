@@ -7,6 +7,7 @@ import MainLayout from "../../../components/layouts/MainLayout/MainLayout";
 import BreadCrumbs from "../../../components/Elements/BreadCrumbs/BreadCrumbs";
 
 import datas from '../../../mocks/HorizontalCardData.json';
+import {data} from '../../../mocks/products.mock';
 
 import 'swiper/css';
 import "swiper/css/pagination";
@@ -18,10 +19,10 @@ import ProductInfo from "../../../components/features/productPage/productIndex/P
 const ProductIndex: NextPage<NextPageProps> = ({
   isMobile
 }) => {
-  const data = datas[0]
+  const product = data[0]
 
   return (
-    <MainLayout isMobile={isMobile} title={data.title} description={data.description} showBackButton>
+    <MainLayout isMobile={isMobile} title={product.title} description={product.description} showBackButton>
       <Section className='my-5 px-2' isMobile={isMobile}>
         <BreadCrumbs/>
         <PageHeader/>
@@ -29,7 +30,7 @@ const ProductIndex: NextPage<NextPageProps> = ({
 
 
       <Section className='px-2 pb-16' isMobile={isMobile}>
-        <ProductInfo isMobile={isMobile} product={data}/>
+        <ProductInfo isMobile={isMobile} product={product}/>
       </Section>
     </MainLayout>
   );

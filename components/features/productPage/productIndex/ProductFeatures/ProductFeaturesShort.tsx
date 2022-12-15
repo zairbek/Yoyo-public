@@ -1,8 +1,9 @@
 import React from "react";
 import {ProductFeature} from "./ProductFeature";
+import {ProductProperty} from "../../../../../utils/interfaces/product/productProperty";
 
 interface ProductFeaturesShortProps {
-  features: object[]
+  features: Array<ProductProperty>
 }
 
 const ProductFeaturesShort: React.FC<ProductFeaturesShortProps> = ({

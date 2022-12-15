@@ -1,9 +1,11 @@
 import React from 'react';
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Mousewheel, Pagination, Navigation} from "swiper";
+import {ProductImage} from "../../../../../utils/interfaces/product/productImage";
+import Image from "next/image";
 
 interface SliderPhotoProps {
-  images: object[]
+  images: Array<ProductImage>
 }
 
 const SliderPhoto: React.FC<SliderPhotoProps> = ({
@@ -21,7 +23,7 @@ const SliderPhoto: React.FC<SliderPhotoProps> = ({
       >
         {images.map((item, key) =>
           <SwiperSlide className="flex justify-center" key={key}>
-            <img className="w-[100%] h-[100%] object-contain" src={item.src} alt=""/>
+            <Image className="w-[100%] h-[100%] object-contain" layout='fill' src={item.src} alt=""/>
           </SwiperSlide>
         )}
       </Swiper>

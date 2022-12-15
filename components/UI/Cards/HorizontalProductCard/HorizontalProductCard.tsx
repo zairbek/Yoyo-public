@@ -5,12 +5,14 @@ import {Pagination, Mousewheel} from 'swiper'
 
 import FavoriteButton from "../../Favorite/FavoriteButton/FavoriteButton";
 import Rating from "../../Rating/Rating/Rating";
+import {Product} from "../../../../utils/interfaces/product/product";
 
 import 'swiper/css';
 import "swiper/css/pagination";
+import Image from "next/image";
 
 interface HorizontalProductCardProps {
-  data: object
+  data: Product
 }
 
 const HorizontalProductCard: React.FC<HorizontalProductCardProps> = ({data}) => {
@@ -32,7 +34,7 @@ const HorizontalProductCard: React.FC<HorizontalProductCardProps> = ({data}) => 
           >
             {data.images.map((item, key) =>
               <SwiperSlide className="flex justify-center" key={key}>
-                <img className="w-[100%] h-[100%] object-contain" src={item.src} alt=""/>
+                <Image className="w-[100%] h-[100%] object-contain" src={item.src} layout="fill" alt=""/>
               </SwiperSlide>
             )}
           </Swiper>
@@ -98,7 +100,7 @@ const HorizontalProductCard: React.FC<HorizontalProductCardProps> = ({data}) => 
         </div>
 
         <div className="truncate text-xs">
-          <a href="/">{data.owner.full_name}</a>
+          <a href="/">{data.owner.fullName}</a>
         </div>
       </div>
 

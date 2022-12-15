@@ -1,7 +1,7 @@
 import React from 'react';
 import MainFilter from "../../../../UI/Filters/MainFilter/MainFilter";
 import SortingPanel from "../../../../UI/SortingPanel/SortingPanel";
-import offersData from "../../../../../mocks/HorizontalCardData.json";
+import {data} from "../../../../../mocks/products.mock";
 import HorizontalProductCard from "../../../../UI/Cards/HorizontalProductCard/HorizontalProductCard";
 
 interface CatalogContentProps {
@@ -30,8 +30,8 @@ const CatalogContent: React.FC<CatalogContentProps> = ({
 
         <div className="flex flex-col">
 
-          {offersData.map((item, key) =>
-            <HorizontalProductCard data={item} key={key}/>
+          {data.map((product, key) =>
+            <HorizontalProductCard data={product} key={key}/>
           )}
 
         </div>

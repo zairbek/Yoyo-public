@@ -1,7 +1,8 @@
 import React from 'react';
+import {Product} from "../../../../../utils/interfaces/product/product";
 
 interface BuyActionProps {
-  product: object
+  product: Product
 }
 
 const BuyAction: React.FC<BuyActionProps> = ({product}) => {

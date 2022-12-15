@@ -4,12 +4,13 @@ import cx from "classnames";
 import {Box} from "../../../../shared/Box";
 import {SliderPhoto} from "../SliderPhoto";
 import Reviews from "../Reviews/Reviews";
-import {Directions} from "../../../../shared/Box/Box";
+import {BoxDirections} from "../../../../shared/Box/Box";
 import {BuyAction} from "../BuyAction";
 import {ProductFeaturesShort, ProductFeaturesFull} from "../ProductFeatures";
+import {Product} from "../../../../../utils/interfaces/product/product";
 
 interface ProductInfoProps {
-  product: object;
+  product: Product;
   isMobile?: boolean;
 }
 
@@ -63,7 +64,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
         </div>
       </Box>
 
-      <Box direction={Directions.Col} isMobile={isMobile}>
+      <Box direction={BoxDirections.Col} isMobile={isMobile}>
         <Reviews reviews={[{description: product.description}]}/>
       </Box>
     </>

@@ -1,9 +1,10 @@
 import React from "react";
 import cx from "classnames";
 import {ProductFeature} from "./ProductFeature";
+import {ProductProperty} from "../../../../../utils/interfaces/product/productProperty";
 
 interface ProductFeaturesFullProps {
-  features: object[];
+  features: Array<ProductProperty>;
   isMobile?: boolean;
 }
 
