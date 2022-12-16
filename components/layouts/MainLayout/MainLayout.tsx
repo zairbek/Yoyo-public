@@ -5,6 +5,7 @@ import DesktopHeader from "../../Header/DesktopHeader";
 import MobileHeader from "../../Header/MobileHeader";
 import AppLayout, {AppLayoutProps} from "../AppLayout/AppLayout";
 import {Divider} from "../../shared/Divider";
+import cx from "classnames";
 
 export interface MainLayoutProps extends AppLayoutProps{
   hideHeader?: boolean;
@@ -36,7 +37,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
       ogDescription={ogDescription}
       ogImage={ogImage}
       ogUrl={ogUrl}
-      className={className}
+      className={cx(className, 'mb-10')}
       isMobile={isMobile}
     >
 
