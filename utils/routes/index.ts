@@ -1,7 +1,11 @@
 export const Routes = {
   home: '/',
+
   catalog: '/catalog',
-  showCatalog: '/catalog/{id}',
+  showCatalog: '/catalog/[id]',
+
+  product: '/product/[slug]',
+
   dashboard: "/my/dashboard/",
   stores: "/my/stores/",
   settings: "/my/settings/",
