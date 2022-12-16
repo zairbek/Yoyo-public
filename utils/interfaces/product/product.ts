@@ -1,6 +1,7 @@
 import {ProductProperty} from "./productProperty";
 import {ProductImage} from "./productImage";
 import {ProductOwner} from "./productOwner";
+import {ProductPrices} from "./productPrice";
 
 export interface Product {
   id: number,
@@ -8,9 +9,10 @@ export interface Product {
   title: string,
   description: string,
   properties: Array<ProductProperty>
-  price: string,
+  prices: ProductPrices,
   address: string,
   dateUpdated: string,
   images: Array<ProductImage>,
+  rating: number,
   owner: ProductOwner,
 }

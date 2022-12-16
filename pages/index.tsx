@@ -2,8 +2,10 @@ import MainLayout from "../components/layouts/MainLayout/MainLayout";
 import {GetServerSidePropsContext} from "next";
 import {isMobile} from "../libs/uaParser";
 import {NextPageWithLayout} from "./_app";
-import {ReactElement} from "react";
+import React, {ReactElement} from "react";
 import TopVerticalCatalogs from "../components/features/indexPage/catalogs/TopVerticalCatalogs/TopVerticalCatalogs";
+import ProductDiscounts from "../components/features/indexPage/discounts/ProductDiscounts/ProductDiscounts";
+import {data as discountProducts} from "../mocks/products.mock";
 
 export interface NextPageProps {
   isMobile: boolean;
@@ -15,6 +17,8 @@ const Home: NextPageWithLayout<NextPageProps> = ({
   return (
     <>
       <TopVerticalCatalogs isMobile={isMobile}/>
+
+      <ProductDiscounts discountProducts={discountProducts} isMobile={isMobile}/>
     </>
   )
 }
