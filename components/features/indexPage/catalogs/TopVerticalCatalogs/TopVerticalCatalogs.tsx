@@ -16,7 +16,7 @@ const TopVerticalCatalogs: React.FC<TopVerticalCatalogsProps> = ({
   return (
     <Section isMobile={isMobile} direction={SectionDirections.Row} className={cx(
       "overflow-y-auto",
-      isMobile ? 'py-2 mt-6 mb-2' : 'py-3 my-3'
+      isMobile ? 'py-2 mt-4' : 'py-3 mt-3'
     )}>
       {data.map((catalog, key) => (
         <Button key={key} size={ButtonSize.sm} beforeIcon={<Heart/>} color={ButtonColors.ghost}>{catalog.name}</Button>
