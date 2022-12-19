@@ -8,7 +8,7 @@ import {Routes} from "../../../../utils/routes";
 import {Product} from "../../../../utils/interfaces/product/product";
 import {ProductPrices} from "../../../../utils/interfaces/product/productPrice";
 import {Button} from "../../../shared/Button";
-import {ButtonSize} from "../../../shared/Button/Button";
+import {ButtonColors, ButtonSize} from "../../../shared/Button/Button";
 import Rating, {RatingSize} from "../../../shared/Rating/Rating/Rating";
 
 interface ProductCardVerticallyProps {
@@ -45,7 +45,7 @@ const ProductCardVertically: React.FC<ProductCardVerticallyProps> = ({
       </Link>
 
       <div>
-      <Button size={ButtonSize.sm}>В корзину</Button>
+      <Button color={ButtonColors.primary} size={ButtonSize.sm}>В корзину</Button>
       </div>
     </Box>
   );
