@@ -5,3 +5,10 @@ export interface Catalog {
   image: string,
   name: string,
 }
+
+
+export interface GroupedCatalog {
+  name: string,
+  image: string,
+  to: string,
+}

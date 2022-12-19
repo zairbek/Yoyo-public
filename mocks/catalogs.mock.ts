@@ -1,4 +1,4 @@
-import {Catalog} from "../utils/interfaces/catalog/catalog";
+import {Catalog, GroupedCatalog} from "../utils/interfaces/catalog/catalog";
 
 export const data: Array<Catalog> = [
   {
@@ -93,3 +93,21 @@ export const data: Array<Catalog> = [
     name: 'Мебели',
   },
 ]
+
+export const groupedCatalogs: Array<GroupedCatalog> = [
+  {
+    name: 'asdfa',
+    image: 'https://api.lorem.space/image/shoes?w=280&h=200',
+    to: '/to'
+  },
+  {
+    name: 'asdfa',
+    image: 'https://api.lorem.space/image/shoes?w=280&h=200',
+    to: '/to'
+  },
+  {
+    name: 'asdfa',
+    image: 'https://api.lorem.space/image/shoes?w=280&h=200',
+    to: '/to'
+  },
+];

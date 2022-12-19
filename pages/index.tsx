@@ -6,6 +6,8 @@ import React, {ReactElement} from "react";
 import TopVerticalCatalogs from "../components/features/indexPage/catalogs/TopVerticalCatalogs/TopVerticalCatalogs";
 import ProductDiscounts from "../components/features/indexPage/discounts/ProductDiscounts/ProductDiscounts";
 import {data as discountProducts} from "../mocks/products.mock";
+import GroupCatalogs from "../components/features/indexPage/catalogs/GroupCatalogs/GroupCatalogs";
+import {groupedCatalogs} from "../mocks/catalogs.mock";
 
 export interface NextPageProps {
   isMobile: boolean;
@@ -16,9 +18,15 @@ const Home: NextPageWithLayout<NextPageProps> = ({
 }) => {
   return (
     <>
-      <TopVerticalCatalogs isMobile={isMobile}/>
+      <div className="flex flex-col gap-4">
+        <TopVerticalCatalogs isMobile={isMobile}/>
 
-      <ProductDiscounts discountProducts={discountProducts} isMobile={isMobile}/>
+        <ProductDiscounts discountProducts={discountProducts} isMobile={isMobile}/>
+
+        <GroupCatalogs data={groupedCatalogs} isMobile={isMobile}/>
+
+        <ProductDiscounts discountProducts={discountProducts} isMobile={isMobile}/>
+      </div>
     </>
   )
 }
